@@ -13,8 +13,8 @@
     <link rel="shortcut icon" href="favicon.ico"> 
     
     <!-- FontAwesome JS-->
-    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
-    
+    <!-- <script defer src="assets/plugins/fontawesome/js/all.min.js"></script> -->
+    <!-- <script defer src="assets/js/callApiLogin.js"></script> --> -->
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 
@@ -42,7 +42,7 @@
 								</div><!--//extra-->
 							</div><!--//form-group-->
 							<div class="text-center">
-								<button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Đăng nhập</button>
+								<button  id="submitLogin" onclick="myFunction()" class="btn app-btn-primary w-100 theme-btn mx-auto">Đăng nhập</button>
 							</div>
 						</form>
 						
@@ -70,7 +70,44 @@
 	    </div><!--//auth-background-col-->
     
     </div><!--//row-->
+<script>
+	// document.getElementById("myBtn").onclick = function() {myFunction()};
 
+/* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+	function myFunction() {
+		var tk = "admin"
+		var mk = "admin"
+
+		var url = `https://amesbe.herokuapp.com/api/general/login/${tk}/${mk}`
+		console.log(url)
+		fetch(url,{
+			method:"POST",
+			headers:{
+				'Content-Type': 'application/json',
+				'Authorization': sessionStorage.getItem("Token")
+			}
+		}).then(function(reponse){
+			if(reponse.status !=200){
+				alert('ten tk hoac mk sai')
+			}
+			else {
+				return reponse.json()
+			}
+		})
+		.then(function(json){xulyReponse(json)})
+	}
+	function xulyReponse(json){
+		var tk = "admin"
+
+		window.sessionStorage.setItem("Token",json.Token)
+		console.log(typeof(tk))
+		let result = tk.substring(0, 2);
+		if(result == "ad"){
+			window.location.replace("./thong_tin_ca_nhan.html")
+		}
+
+	}
+</script>
 
 </body>
 </html> 
