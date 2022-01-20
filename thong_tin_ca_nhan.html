@@ -13,14 +13,15 @@
     <link rel="shortcut icon" href="favicon.ico"> 
     
     <!-- FontAwesome JS-->
-    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
-    
+    <!-- <script defer src="assets/plugins/fontawesome/js/all.min.js"></script> -->
+    <script defer src="assets/js/app.js"></script>
+
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 
 </head> 
 
-<body class="app">   	
+<body class="app" onload="lay_thong_tin_gv()">   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -43,7 +44,7 @@
 			
 		
 			            <div class="app-utility-item app-user-dropdown dropdown">
-				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào Tiến</a>
+				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào</a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								<li><a class="dropdown-item" href="account.html">Account</a></li>
 								<li><a class="dropdown-item" href="settings.html">Settings</a></li>
@@ -167,7 +168,7 @@
                 <div class="col-md-3 border-right">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                         <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                        <span class="font-weight-bold">Nguyễn Minh Tiến</span>
+                        <span id="name_gv" class="font-weight-bold"></span>
                         <span> </span>
                     </div>
                 </div>
@@ -182,7 +183,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Mã Số GV: </label> </div>
                                 <div class="col"> 
-                                    <input id="maso-gv" name="maso-gv" type="text" class="form-control_label_hv"  value="10265" disabled>
+                                    <input id="maso-gv" name="maso-gv" type="text" class="form-control_label_hv"   disabled>
                                 </div>
                             </div>
                             <br>
@@ -192,7 +193,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Họ Tên: </label> </div>
                                 <div class="col"> 
-                                    <input id="hoten-gv" name="hoten-gv" type="text" class="form-control_label_hv"  value="Nguyễn Minh Tiến" disabled>
+                                    <input id="hoten-gv" name="hoten-gv" type="text" class="form-control_label_hv"   disabled>
                                 </div>
                             </div>
                             <br>
@@ -202,27 +203,18 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">CCCD: </label> </div>
                                 <div class="col"> 
-                                    <input id="cccd-gv" name="cccd-gv" type="text" class="form-control_label_hv"  value="0123456789" disabled>
+                                    <input id="cccd-gv" name="cccd-gv" type="text" class="form-control_label_hv"   disabled>
                                 </div>
                             </div>
                             <br>
                         </div>
 
-                        <div class="container">
-                            <div class="row">
-                                <div class="col"> <label  class="form-label">Khóa Học: </label> </div>
-                                <div class="col"> 
-                                    <input id="khoahoc-gv" name="khoahoc-gv" type="text" class="form-control_label_hv"  value="A102021" disabled>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
 
                         <div class="container">
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Ngày Sinh: </label> </div>
                                 <div class="col"> 
-                                    <input id="ngaysinh-gv" name="ngaysinh-gv" type="text" class="form-control_label_hv"  value="03/08/2000" disabled>
+                                    <input id="ngaysinh-gv" name="ngaysinh-gv" type="text" class="form-control_label_hv"   disabled>
                                 </div>
                             </div>
                             <br>
@@ -232,7 +224,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Giới Tính: </label> </div>
                                 <div class="col"> 
-                                    <input id="gioitinh-gv" name="gioitinh-gv" type="text" class="form-control_label_hv"  value="Nam" disabled>
+                                    <input id="gioitinh-gv" name="gioitinh-gv" type="text" class="form-control_label_hv"   disabled>
                                 </div>
                             </div>
                             <br>
@@ -242,7 +234,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Email: </label> </div>
                                 <div class="col"> 
-                                    <input id="email-gv" name="email-gv" type="text" class="form-control_label_hv"  value="lva@gmail.com" disabled>
+                                    <input id="email-gv" name="email-gv" type="text" class="form-control_label_hv"   disabled>
                                 </div>
                             </div>
                             <br>
@@ -252,7 +244,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Điện Thoại: </label> </div>
                                 <div class="col"> 
-                                    <input id="dienthoai-gv" name="dienthoai-gv" type="text" class="form-control_label_hv"  value="0987654321" disabled>
+                                    <input id="dienthoai-gv" name="dienthoai-gv" type="text" class="form-control_label_hv"   disabled>
                                 </div>
                             </div>
                             <br>
@@ -262,7 +254,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Địa Chỉ: </label> </div>
                                 <div class="col"> 
-                                    <input id="diachi-gv" name="diachi-gv" type="text" class="form-control_label_hv"  value="Liên Chiểu - Đà Nẵng" disabled>
+                                    <input id="diachi-gv" name="diachi-gv" type="text" class="form-control_label_hv"   disabled>
                                 </div>
                             </div>
                             <br>
@@ -291,7 +283,7 @@
     
     
     <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
+    <!-- <script src="assets/js/app.js"></script>  -->
 
 </body>
 </html> 

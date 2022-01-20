@@ -20,7 +20,7 @@
 
 </head> 
 
-<body class="app">   	
+<body class="app" onload="lay_thong_tin_gv()">   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -112,128 +112,119 @@
 	    </div><!--//app-sidepanel-->
     </header><!--//app-header-->
     
-   <div class="app-wrapper">
-	    
-	    <div class="app-content pt-3 p-md-3 p-lg-4">
-		    <div class="container-xl">			    
-			    <h1 class="app-page-title">Chi tiết tài khoản</h1>
-			    <hr class="mb-4">
-                <div class="row g-4 settings-section">
-	    
-					
-	           
-		                <div class="app-card app-card-settings shadow-sm  p-4">
-						    <form action="change_pass_admin" method="post">
-							
+    <div class="app-wrapper">
+        <div class="container rounded bg-white mb-5">
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                        <span id="name_gv" class="font-weight-bold"></span>
+                        <span> </span>
+                    </div>
+                </div>
 
-							
-    
-							<div class="container">
-								<div class="row">
-									<div class="col"> <label for="setting-input-1" class="form-label">Tài khoản: </label> </div>
-									<div class="col"> 
-										<label>taideptrai</label>
-									</div>
-						         </div>
-								</div>
-								<br>		
-							
-							<div class="container">
-								<div class="row">
-									<div class="col"> <label for="setting-input-1" class="form-label">Họ tên: </label> </div>
-									<div class="col"> 
-										<label>Nguyễn Lê Tài</label>
-									</div>
-						         </div>
-								</div>
-								<br>
-				
-							<div class="container">
-								<div class="row">
-									<div class="col"> <label for="setting-input-1" class="form-label">Giới tính: </label> </div>
-									<div class="col"> 
-										<label>Nam</label>
-									</div>
-						         </div>
-								</div>
-								<br>
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Thông Tin Cá Nhân</h4>
+                        </div>
 
-							<div class="container">
-								<div class="row">
-									<div class="col"> <label for="setting-input-1" class="form-label">Ngày sinh: </label> </div>
-									<div class="col"> 
-										<label>08/07/2000</label>
-									</div>
-						         </div>
-								</div>
-								<br>				
-							
-							<div class="container">
-								<div class="row">
-									<div class="col"> <label for="setting-input-1" class="form-label">Địa chỉ: </label> </div>
-									<div class="col"> 
-										<label>Đà Nẵng</label>
-									</div>
-						         </div>
-								</div>
-								<br>							
-							
-							<div class="container">
-								<div class="row">
-									<div class="col"> <label for="setting-input-1" class="form-label">Số điện thoại: </label> </div>
-									<div class="col"> 
-										<label>0838581807</label>
-									</div>
-						         </div>
-								</div>
-								<br>							
-							
-							<div class="container">
-								<div class="row">
-									<div class="col"> <label for="setting-input-1" class="form-label">CCCD: </label> </div>
-									<div class="col"> 
-										<label>201811768</label>
-									</div>
-						         </div>
-								</div>
-								<br>							
-							
-							<div class="container">
-								<div class="row">
-									<div class="col"> <label for="setting-input-1" class="form-label">Email: </label> </div>
-									<div class="col"> 
-										<label>nguyenletai2000@gmail.com</label>
-									</div>
-						         </div>
-								</div>
-								<br>	
-
-							<div class="container">
-								<div class="row">
-									<div class="col">   
-									<div class=" text-center ">
-  									<a href="doimk_quanly.html" class="btn btn-sm bg-danger text-white" >Đổi mật khẩu</a> 
-								    </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"> <label  class="form-label">Tên tài khoản: </label> </div>
+                                <div class="col"> 
+                                    <input id="maso-gv" name="maso-gv" type="text" class="form-control_label_hv"   disabled>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"> <label  class="form-label">Họ Tên: </label> </div>
+                                <div class="col"> 
+                                    <input id="hoten-gv" name="hoten-gv" type="text" class="form-control_label_hv"   disabled>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"> <label  class="form-label">CCCD: </label> </div>
+                                <div class="col"> 
+                                    <input id="cccd-gv" name="cccd-gv" type="text" class="form-control_label_hv"   disabled>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
 
 
-									</div>
-									
-									<div class="col">   
-									<div class=" text-center "> 
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"> <label  class="form-label">Ngày Sinh: </label> </div>
+                                <div class="col"> 
+                                    <input id="ngaysinh-gv" name="ngaysinh-gv" type="text" class="form-control_label_hv"   disabled>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
 
-									<a href="suataikhoan_quanly.html" class="btn btn-sm bg-primary text-white">Sửa thông tin</a> 
-									</div> 
-									</div>
-									
-								</div>
-								<br>
-							</div>
-	
-							</form>
-						</div><!--//app-card-->
-	                
-					
-                </div><!--//row-->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"> <label  class="form-label">Giới Tính: </label> </div>
+                                <div class="col"> 
+                                    <input id="gioitinh-gv" name="gioitinh-gv" type="text" class="form-control_label_hv"   disabled>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"> <label  class="form-label">Email: </label> </div>
+                                <div class="col"> 
+                                    <input id="email-gv" name="email-gv" type="text" class="form-control_label_hv"   disabled>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"> <label  class="form-label">Điện Thoại: </label> </div>
+                                <div class="col"> 
+                                    <input id="dienthoai-gv" name="dienthoai-gv" type="text" class="form-control_label_hv"   disabled>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"> <label  class="form-label">Địa Chỉ: </label> </div>
+                                <div class="col"> 
+                                    <input id="diachi-gv" name="diachi-gv" type="text" class="form-control_label_hv"   disabled>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"> <button type="button" class="btn app-btn-primary" onclick="window.location.href='doi_mat_khau.html'">Đổi Mật Khẩu</button> </div>
+                                <div class="col"> <button type="button" class="btn app-btn-primary" onclick="window.location.href='chinh_sua_ttcn.html'">Chỉnh Sửa</button> </div>
+                                
+                            </div>
+                            <br>
+                        </div>
+
+                    </div>
+                </div>
+               
+                </div>
+            </div>
+        </div>		
                 <hr class="my-4">
               
                 
@@ -256,9 +247,7 @@
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
 
-    <!-- Charts JS -->
-    <script src="assets/plugins/chart.js/chart.min.js"></script> 
-    <script src="assets/js/index-charts.js"></script> 
+
     
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 

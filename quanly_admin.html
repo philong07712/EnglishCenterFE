@@ -22,7 +22,7 @@
 
 </head> 
 
-<body class="app">   	
+<body class="app" onload="get_all_acc()">   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -175,67 +175,17 @@
 							        <table class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell">Id</th>
-												<th class="cell">Họ tên</th>
-												<th class="cell">Số điện thoại</th>
-												<th class="cell">Địa chỉ</th>
-												<th class="cell">Ngày sinh</th>
-												<th class="cell">Loại tài khoản</th>
+												<th class="cell text-center">Id</th>
+												<th class="cell text-center">Họ tên</th>
+												<th class="cell text-center">Số điện thoại</th>
+												<th class="cell text-center">Địa chỉ</th>
+												<th class="cell text-center">Ngày sinh</th>
+												<th class="cell text-center">Loại tài khoản</th>
 												<th class="cell"></th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td class="cell">#001</td>
-												<td class="cell"><span class="truncate">Nguyễn Lê Tài</span></td>
-												<td class="cell">0838581807</td>
-												<td class="cell">Đà Nẵng</td>
-												<td class="cell">08/07/2000</td>
-												<td class="cell"><span class="badge bg-danger">Quản lý</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="viewtaikhoan_admin.html">View</a></td>
-											</tr>
+										<tbody id="data">
 
-
-											<tr>
-												<td class="cell">#002</td>
-												<td class="cell"><span class="truncate">Dương Thanh Dũng</span></td>
-												<td class="cell">0123456789</td>
-												<td class="cell">Hà Tĩnh</td>
-												<td class="cell">01/01/2000</td>
-												<td class="cell"><span class="badge bg-warning">Giảng viên</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
-											
-
-											<tr>
-												<td class="cell">#003</td>
-												<td class="cell"><span class="truncate">Hồ Thế Anh Đức</span></td>
-												<td class="cell">0987654321</td>
-												<td class="cell">Hà Tĩnh</td>
-												<td class="cell">02/02/2000</td>
-											    <td class="cell"><span class="badge bg-warning">Giảng viên</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
-
-											<tr>
-												<td class="cell">#004</td>
-												<td class="cell"><span class="truncate">Đoàn Xuân Hùng</span></td>
-												<td class="cell">0112233445</td>
-												<td class="cell">Đà Nẵng</td>
-												<td class="cell">03/03/2000</td>
-												<td class="cell"><span class="badge bg-success">Học viên</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>		
-		
-											<tr>
-												<td class="cell">#005</td>
-												<td class="cell"><span class="truncate">Nguyễn Đình Quốc</span></td>
-												<td class="cell">0838581807</td>
-												<td class="cell">Đà Nẵng</td>
-												<td class="cell">04/04/2000</td>
-												<td class="cell"><span class="badge bg-success">Học viên</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
 		
 										</tbody>
 									</table>
@@ -243,19 +193,7 @@
 						       
 						    </div><!--//app-card-body-->		
 						</div><!--//app-card-->
-						<nav class="app-pagination">
-							<ul class="pagination justify-content-center">
-								<li class="page-item disabled">
-									<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-							    </li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-								    <a class="page-link" href="#">Next</a>
-								</li>
-							</ul>
-						</nav><!--//app-pagination-->
+
 						
 			        </div><!--//tab-pane-->
 			        
@@ -267,25 +205,16 @@
 							        <table class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell">Id</th>
-												<th class="cell">Họ tên</th>
-												<th class="cell">Số điện thoại</th>
-												<th class="cell">Địa chỉ</th>
-												<th class="cell">Ngày sinh</th>
-												<th class="cell">Loại tài khoản</th>
-												<th class="cell"></th>
+												<th class="cell text-center">Id</th>
+												<th class="cell text-center">Họ tên</th>
+												<th class="cell text-center">Số điện thoại</th>
+												<th class="cell text-center">Địa chỉ</th>
+												<th class="cell text-center">Ngày sinh</th>
+												<th class="cell text-center">Loại tài khoản</th>
+												<th class="cell text-center"></th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td class="cell">#001</td>
-												<td class="cell"><span class="truncate">Nguyễn Lê Tài</span></td>
-												<td class="cell">0838581807</td>
-												<td class="cell">Đà Nẵng</td>
-												<td class="cell">08/07/2000</td>
-												<td class="cell"><span class="badge bg-danger">Quản lý</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
+										<tbody id="data_1">
 
 
 		
@@ -305,38 +234,19 @@
 							        <table class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell">Id</th>
-												<th class="cell">Họ tên</th>
-												<th class="cell">Số điện thoại</th>
-												<th class="cell">Địa chỉ</th>
-												<th class="cell">Ngày sinh</th>
-												<th class="cell">Loại tài khoản</th>
+												<th class="cell text-center">Id</th>
+												<th class="cell text-center">Họ tên</th>
+												<th class="cell text-center">Số điện thoại</th>
+												<th class="cell text-center">Địa chỉ</th>
+												<th class="cell text-center">Ngày sinh</th>
+												<th class="cell text-center">Loại tài khoản</th>
 												<th class="cell"></th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="data_2">
 
 
-											<tr>
-												<td class="cell">#002</td>
-												<td class="cell"><span class="truncate">Dương Thanh Dũng</span></td>
-												<td class="cell">0123456789</td>
-												<td class="cell">Hà Tĩnh</td>
-												<td class="cell">01/01/2000</td>
-												<td class="cell"><span class="badge bg-warning">Giảng viên</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
-											
-
-											<tr>
-												<td class="cell">#003</td>
-												<td class="cell"><span class="truncate">Hồ Thế Anh Đức</span></td>
-												<td class="cell">0987654321</td>
-												<td class="cell">Hà Tĩnh</td>
-												<td class="cell">02/02/2000</td>
-											    <td class="cell"><span class="badge bg-warning">Giảng viên</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
+	
 
 
 										</tbody>
@@ -355,37 +265,19 @@
 							        <table class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell">Id</th>
-												<th class="cell">Họ tên</th>
-												<th class="cell">Số điện thoại</th>
-												<th class="cell">Địa chỉ</th>
-												<th class="cell">Ngày sinh</th>
-												<th class="cell">Loại tài khoản</th>
-												<th class="cell"></th>
+												<th class="cell text-center">Id</th>
+												<th class="cel text-centerl">Họ tên</th>
+												<th class="cell text-center">Số điện thoại</th>
+												<th class="cell text-center">Địa chỉ</th>
+												<th class="cell text-center">Ngày sinh</th>
+												<th class="cell text-center">Loại tài khoản</th>
+												<th class="cell "></th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="data_3">
 
 
-											<tr>
-												<td class="cell">#004</td>
-												<td class="cell"><span class="truncate">Đoàn Xuân Hùng</span></td>
-												<td class="cell">0112233445</td>
-												<td class="cell">Đà Nẵng</td>
-												<td class="cell">03/03/2000</td>
-												<td class="cell"><span class="badge bg-success">Học viên</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>		
-		
-											<tr>
-												<td class="cell">#005</td>
-												<td class="cell"><span class="truncate">Nguyễn Đình Quốc</span></td>
-												<td class="cell">0838581807</td>
-												<td class="cell">Đà Nẵng</td>
-												<td class="cell">04/04/2000</td>
-												<td class="cell"><span class="badge bg-success">Học viên</span></td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-											</tr>
+
 
 
 										</tbody>
@@ -425,8 +317,140 @@
     
     
     <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
+    <script>
+function get_all_acc(){
+    var url = `https://amesbe.herokuapp.com/api/account/thong-ke`
+    console.log(url)
+    fetch(url,{
+        method:"GET",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiYWRtaW4ifQ.RnuaT2IuMgMlKtowFP8zJDASCRY54XFe7K6fRPNEgKM'
+        }
+    }).then((reponse)=>{
+           if(reponse.ok){
+			   reponse.json().then((json)=>{
+				console.log(json)
+				 
+				//const myArray = JSON.parse(json);
+				 
+				//if(myArray.length >0){
+					var cry = "";
+					var cry1 = "";
+					var cry2 = "";
+					var cry3 = "";
+					
+				//}  
+				   
+				for(i in json){
+					cry += "<tr>"
+					cry += `<td class="cell text-center"> ${json[i].TK} </td>`;
+					cry += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
+					cry += `<td class="cell text-center"> ${json[i].SDT}</td>`;
+					cry += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
+					cry += `<td class="cell text-center"> ${json[i].NgaySinh} </td>`;
+					if(json[i].Role=="Student")
+					cry += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Teacher")
+					cry += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Manager")
+					cry += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Admin")
+					cry += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+					
+												
+					cry += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
 
+
+
+
+					if(json[i].Role=="Manager"){
+
+					cry1 += "<tr>"
+					cry1 += `<td class="cell text-center"> ${json[i].TK} </td>`;
+					cry1 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
+					cry1 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
+					cry1 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
+					cry1 += `<td class="cell text-center"> ${json[i].NgaySinh} </td>`;
+					if(json[i].Role=="Student")
+					cry1 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Teacher")
+					cry1 += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Manager")
+					cry1 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Admin")
+					cry1 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+					
+												
+					cry1 += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
+					
+					
+					}
+					
+					
+					
+					if(json[i].Role=="Teacher"){
+
+					cry2 += "<tr>"
+					cry2 += `<td class="cell text-center"> ${json[i].TK} </td>`;
+					cry2 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
+					cry2 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
+					cry2 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
+					cry2 += `<td class="cell text-center"> ${json[i].NgaySinh} </td>`;
+					if(json[i].Role=="Student")
+					cry2 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Teacher")
+					cry2 += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Manager")
+					cry2 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Admin")
+					cry2 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+					
+												
+					cry2 += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
+					
+					
+					}					
+
+					if(json[i].Role=="Student"){
+
+					cry3 += "<tr>"
+					cry3 += `<td class="cell text-center"> ${json[i].TK} </td>`;
+					cry3 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
+					cry3 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
+					cry3 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
+					cry3 += `<td class="cell text-center"> ${json[i].NgaySinh} </td>`;
+					if(json[i].Role=="Student")
+					cry3 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Teacher")
+					cry3 += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Manager")
+					cry3 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+					if(json[i].Role=="Admin")
+					cry3 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+					
+												
+					cry3 += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
+					
+					
+					}					
+ 			
+				}	
+				
+				 document.getElementById("data").innerHTML=cry
+				 document.getElementById("data_1").innerHTML=cry1
+				 document.getElementById("data_2").innerHTML=cry2
+				 document.getElementById("data_3").innerHTML=cry3
+			   })
+		   }
+		   
+		   
+    }).catch((error)=>{
+     console.log(object)
+})
+}	
+	</script> 
+    <script src="assets/js/app.js"></script> 
 </body>
 </html> 
 
