@@ -1,3 +1,62 @@
+// Hiển thị menu ở dạng màn hình nhỏ
+
+/* ===== Responsive Sidepanel ====== */
+const sidePanelToggler = document.getElementById('sidepanel-toggler'); 
+const sidePanel = document.getElementById('app-sidepanel');  
+const sidePanelDrop = document.getElementById('sidepanel-drop'); 
+const sidePanelClose = document.getElementById('sidepanel-close'); 
+
+window.addEventListener('load', function(){
+	responsiveSidePanel(); 
+});
+
+window.addEventListener('resize', function(){
+	responsiveSidePanel(); 
+});
+
+
+function responsiveSidePanel() {
+    let w = window.innerWidth;
+	if(w >= 1200) {
+	    // if larger 
+	    //console.log('larger');
+		sidePanel.classList.remove('sidepanel-hidden');
+		sidePanel.classList.add('sidepanel-visible');
+		
+	} else {
+	    // if smaller
+	    //console.log('smaller');
+	    sidePanel.classList.remove('sidepanel-visible');
+		sidePanel.classList.add('sidepanel-hidden');
+	}
+};
+
+sidePanelToggler.addEventListener('click', () => {
+	if (sidePanel.classList.contains('sidepanel-visible')) {
+		console.log('visible');
+		sidePanel.classList.remove('sidepanel-visible');
+		sidePanel.classList.add('sidepanel-hidden');
+		
+	} else {
+		console.log('hidden');
+		sidePanel.classList.remove('sidepanel-hidden');
+		sidePanel.classList.add('sidepanel-visible');
+	}
+});
+
+
+
+sidePanelClose.addEventListener('click', (e) => {
+	e.preventDefault();
+	sidePanelToggler.click();
+});
+
+sidePanelDrop.addEventListener('click', (e) => {
+	sidePanelToggler.click();
+});
+
+
+
 // Đăng nhập
 function checkLogin() {
     var tk = document.getElementById("signin-email").value;
@@ -330,10 +389,11 @@ function gv_xem_ct_hv(){
 }
 
 function gv_hienthi_ct_hv(json){
+    var ngaysinh = new Date(json.NgaySinh);
     document.getElementById("maso-hv").value = json.TK;
     document.getElementById("hoten-hv").value = json.HoTen;
     document.getElementById("cccd-hv").value = json.MaCanCuoc;
-    document.getElementById("ngaysinh-hv").value = json.NgaySinh;
+    document.getElementById("ngaysinh-hv").value = ngaysinh.toLocaleDateString();
     if (json.GioiTinh == false) {
         document.getElementById("gioitinh-hv").value = "Nữ";
     } else {
