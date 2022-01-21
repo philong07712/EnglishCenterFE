@@ -8,7 +8,6 @@ function checkLogin() {
     }
 
     var url = `https://amesbe.herokuapp.com/api/general/login/${tk}/${mk}`
-    console.log(url)
     fetch(url,{
         method:"POST",
         headers:{
@@ -30,12 +29,12 @@ function xulyLogin(json){
      var tk1 = document.getElementById("signin-email").value;
 
     window.sessionStorage.setItem("Token",json.Token)
-    console.log(typeof(tk1))
     let result = tk1.substring(0, 2);
     if(result == "GV"){
         window.location.replace("./gv_thong_tin_ca_nhan.html")
     }
     if(result == "QL"){
+        console.log(typeof(tk1))
         window.location.replace("./index_quanly.html")
     }
 	if(result == "ad"){
