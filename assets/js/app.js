@@ -30,6 +30,9 @@ function xulyLogin(json){
 
     window.sessionStorage.setItem("Token",json.Token)
     let result = tk1.substring(0, 2);
+    if(result == "HV"){
+        window.location.replace("./thong_tin_hoc_vien.html")
+    }
     if(result == "GV"){
         window.location.replace("./gv_thong_tin_ca_nhan.html")
     }

@@ -13,14 +13,14 @@
     <link rel="shortcut icon" href="favicon.ico"> 
     
     <!-- FontAwesome JS-->
-    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>   
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 
 </head> 
 
-<body class="app">   	
+<body class="app" onload="lay_thong_tin_hv()">   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -43,12 +43,12 @@
 			
 		
 			            <div class="app-utility-item app-user-dropdown dropdown">
-                        <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào Trường!</a>
+                        <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào!</a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								<li><a class="dropdown-item" href="account.html">Account</a></li>
 								<li><a class="dropdown-item" href="settings.html">Settings</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="login.html">Log Out</a></li>
+								<li><a class="dropdown-item" href="dang_nhap.html">Log Out</a></li>
 							</ul>
 			            </div><!--//app-user-dropdown--> 
 		            </div><!--//app-utilities-->
@@ -135,7 +135,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Mã Số Học Viên: </label> </div>
                                 <div class="col"> 
-                                    <input id="maso-gv" name="maso-gv" type="text" class="form-control_label_hv"  value="102180106" disabled>
+                                    <input id="maso-hv" name="maso-hv" type="text" class="form-control_label_hv" disabled>
                                 </div>
                             </div>
                             <br>
@@ -145,7 +145,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Họ Tên: </label> </div>
                                 <div class="col"> 
-                                    <input id="hoten-gv" name="hoten-gv" type="text" class="form-control_label_hv"  value="Nguyễn Duy Trường" disabled>
+                                    <input id="hoten-hv" name="hoten-hv" type="text" class="form-control_label_hv" disabled>
                                 </div>
                             </div>
                             <br>
@@ -155,7 +155,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">CCCD: </label> </div>
                                 <div class="col"> 
-                                    <input id="cccd-gv" name="cccd-gv" type="text" class="form-control_label_hv"  value="0123456789" disabled>
+                                    <input id="cccd-hv" name="cccd-hv" type="text" class="form-control_label_hv" disabled>
                                 </div>
                             </div>
                             <br>
@@ -165,7 +165,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Ngày Sinh: </label> </div>
                                 <div class="col"> 
-                                    <input id="ngaysinh-gv" name="ngaysinh-gv" type="text" class="form-control_label_hv"  value="18/09/2000" disabled>
+                                    <input id="ngaysinh-hv" name="ngaysinh-hv" type="text" class="form-control_label_hv" disabled>
                                 </div>
                             </div>
                             <br>
@@ -175,17 +175,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Giới Tính: </label> </div>
                                 <div class="col"> 
-                                    <input id="gioitinh-gv" name="gioitinh-gv" type="text" class="form-control_label_hv"  value="Nam" disabled>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-
-                        <div class="container">
-                            <div class="row">
-                                <div class="col"> <label  class="form-label">Email: </label> </div>
-                                <div class="col"> 
-                                    <input id="email-gv" name="email-gv" type="text" class="form-control_label_hv"  value="ndt@gmail.com" disabled>
+                                    <input id="gioitinh-hv" name="gioitinh-hv" type="text" class="form-control_label_hv" disabled>
                                 </div>
                             </div>
                             <br>
@@ -195,7 +185,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Điện Thoại: </label> </div>
                                 <div class="col"> 
-                                    <input id="dienthoai-gv" name="dienthoai-gv" type="text" class="form-control_label_hv"  value="0987654321" disabled>
+                                    <input id="dienthoai-hv" name="dienthoai-hv" type="text" class="form-control_label_hv" disabled>
                                 </div>
                             </div>
                             <br>
@@ -205,7 +195,7 @@
                             <div class="row">
                                 <div class="col"> <label  class="form-label">Địa Chỉ: </label> </div>
                                 <div class="col"> 
-                                    <input id="diachi-gv" name="diachi-gv" type="text" class="form-control_label_hv"  value="Liên Chiểu - Đà Nẵng" disabled>
+                                    <input id="diachi-hv" name="diachi-hv" type="text" class="form-control_label_hv" disabled>
                                 </div>
                             </div>
                             <br>
@@ -232,8 +222,13 @@
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
     
     
+    <!-- Charts JS -->
+    <script src="assets/plugins/chart.js/chart.min.js"></script> 
+    <script src="assets/js/index-charts.js"></script>
+
     <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
+    <!-- <script src="assets/js/hocvien.js"></script>  -->
+    <script defer src="assets/js/hocvien.js"></script>
 
 </body>
 </html> 
