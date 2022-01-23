@@ -58,10 +58,7 @@
 			            <i class="search-mobile-trigger-icon fas fa-search"></i>
 			        </div><!--//col-->
 		            <div class="app-search-box col">
-		                <form class="app-search-form">   
-							<input type="text" placeholder="Search..." name="search" class="form-control search-input">
-							<button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fas fa-search"></i></button> 
-				        </form>
+
 		            </div><!--//app-search-box-->
 		            
 		            <div class="app-utilities col-auto">
@@ -153,7 +150,7 @@
 
 
 									<div class="col"> 
-									<a href="#" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal1">Chỉnh sửa</a>
+									<a onclick="laylophoc()" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal1">Chỉnh sửa</a>
 									</div>
 								</div>
 								<br>
@@ -292,7 +289,7 @@
 									<div class="col">   
 									<div class=" text-center "> 
 
-									<a href="#" class="btn btn-sm bg-success text-white" data-bs-dismiss="modal">Có</a>
+									<a onclick="del_lophoc()" class="btn btn-sm bg-success text-white" data-bs-dismiss="modal">Có</a>
 									</div> 
 									</div>
 									
@@ -327,7 +324,7 @@
 										  <tr>
 											<td><label  class="form-label">Mã lớp: </label></td>
 											<td>
-												<input type="text" name="malop" required class="form-control" value="" >
+												<input type="text" id="malop_doi" name="malop_doi" required class="form-control" value=""  disabled>
 											</td>
 
 										  </tr>
@@ -336,7 +333,7 @@
 										  <tr>
 											<td><label  class="form-label">Tên lớp: </label></td>
 											<td>
-												<input type="text" name="tenlop" required class="form-control" value="" >
+												<input type="text" id="tenlop_doi" name="tenlop_doi" required class="form-control" value="" >
 											</td>
 
 										  </tr>		
@@ -344,7 +341,7 @@
 										  <tr>
 											<td><label  class="form-label">Giờ học: </label></td>
 											<td>
-												<input type="text" name="giohoc" required class="form-control" value="" >
+												<input type="text" id="giohoc_doi" name="giohoc_doi" required class="form-control" value="" >
 											</td>
 
 										  </tr>											  
@@ -352,7 +349,7 @@
 										  <tr>
 											<td><label  class="form-label">Giảng viên: </label></td>
 											<td>
-												<input type="text" name="giangvien" required class="form-control" value="" >
+												<input type="text" id="giangvien_doi" name="giangvien_doi" required class="form-control" value="" disabled >
 											</td>
 
 										  </tr>	
@@ -360,7 +357,7 @@
 										  <tr>
 											<td><label  class="form-label">Phòng: </label></td>
 											<td>
-												<input type="text" name="phong" required class="form-control" value="" >
+												<input type="text"  id="phong_doi" name="phong_doi" required class="form-control" value="" >
 											</td>
 
 										  </tr>	
@@ -385,7 +382,7 @@
 									<div class="col">   
 									<div class=" text-center "> 
 
-									<a href="#" class="btn btn-sm bg-primary text-white" data-bs-dismiss="modal">Cập nhật</a>
+									<a onclick="chinhlophoc()" class="btn btn-sm bg-primary text-white" data-bs-dismiss="modal">Cập nhật</a>
 									</div> 
 									</div>
 									
@@ -509,9 +506,137 @@
      console.log(object)
 })
 }	
+
+	function del_lophoc(){
+
+	const queryString = window.location.search;
+	let id=queryString.replace('?', '');
 	
+	   var url = `https://amesbe.herokuapp.com/api/manager/${id}`
+    console.log(url)
+    fetch(url,{
+        method:"DELETE",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
+        }
+    }).then((reponse)=>{
+           if(reponse.ok){
+			   reponse.json().then((json)=>{
+				console.log(json)
+				 
+
+	
+			   })
+		   }
+				window.location.replace("./listlophoc_quanly.html")		   
+		   
+    }).catch((error)=>{
+     console.log(object)
+})
+}	
 	
 	</script>
+	
+<script>
+	function laylophoc(){
+	
+		const queryString4 = window.location.search;
+	    let id4=queryString4.replace('?', '');
+
+	
+	   var url = `https://amesbe.herokuapp.com/api/manager/${id4}`
+    console.log(url)
+    fetch(url,{
+        method:"GET",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
+        }
+    }).then((reponse)=>{
+           if(reponse.ok){
+			   reponse.json().then((json)=>{
+				console.log(json)
+				 
+				    document.getElementById("malop_doi").value = json.MaLop;
+					document.getElementById("tenlop_doi").value = json.TenLop;
+					document.getElementById("giohoc_doi").value = json.GioHoc;
+					document.getElementById("giangvien_doi").value = json.MaGiangVien+"-"+json.TenGiangVien;
+					document.getElementById("phong_doi").value = json.PhongHoc;
+
+	
+			   })
+		   }
+		   
+		   
+    }).catch((error)=>{
+     console.log(object)
+})
+}
+
+	function chinhlophoc(){
+	const queryString6 = window.location.search;
+	let id5=queryString6.replace('?', '');
+	
+	var giangvien = document.querySelector('input[name="giangvien_doi"]').value
+	var malop = document.querySelector('input[name="malop_doi"]').value
+	var tenlop = document.querySelector('input[name="tenlop_doi"]').value
+	var giohoc = document.querySelector('input[name="giohoc_doi"]').value
+	var phong = document.querySelector('input[name="phong_doi"]').value	
+
+
+	var magv=giangvien.substr(0, 9);
+	var tengv=giangvien.substr(10, );
+
+
+	
+	
+	var formData ={
+    "PhongHoc": phong,
+    "MaLop": malop,
+    "TenGiangVien": tengv,
+    "MaGiangVien": magv,
+    "TenLop": tenlop,
+    "GioHoc": giohoc
+	};
+	
+	var url = `https://amesbe.herokuapp.com/api/manager/${id5}/updateInfor` 
+    console.log(url)
+    fetch(url,{
+        method:"PUT",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
+        },
+		body: JSON.stringify(formData)
+    }).then((reponse)=>{
+           if(reponse.ok){
+			   reponse.json().then((json)=>{
+				console.log(json)
+			
+				
+	
+			   })
+		   }
+		   
+		   
+    }).catch((error)=>{
+     console.log(object)
+})
+						alert("cập nhật thành công")
+						
+					
+	}
+
+	</script>
+ 
+	<script>
+	
+		const queryString8 = window.location.search;
+	    let id8=queryString8.replace('?', '');
+	    window.sessionStorage.setItem("URL",id8);
+	</script>
+
 
 </body>
 </html> 

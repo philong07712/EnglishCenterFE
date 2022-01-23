@@ -36,10 +36,7 @@
 			            <i class="search-mobile-trigger-icon fas fa-search"></i>
 			        </div><!--//col-->
 		            <div class="app-search-box col">
-		                <form class="app-search-form">   
-							<input type="text" placeholder="Search..." name="search" class="form-control search-input">
-							<button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fas fa-search"></i></button> 
-				        </form>
+
 		            </div><!--//app-search-box-->
 		            
 		            <div class="app-utilities col-auto">
@@ -266,10 +263,86 @@
 									</div>
 									
 									<div class="col">   
+									<div class=" text-center ">                   
+
+  									<a href="#" onclick="laytaikhoan()" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#myModala">Sửa tài khoản</a>  
+									</div> 
+											<!-- The Modal -->
+									<div class="modal" id="myModala">
+									  <div class="modal-dialog modal-dialog-centered">
+										<div class="modal-content">
+
+										  <!-- Modal Header -->
+										  <div class="modal-header">
+											<h5 class="modal-title text-center">Chỉnh sửa thông tin tài khoản</h5>
+											<button  type="button" class="btn-close" data-bs-dismiss="modal"></button>
+											
+										  </div>
+
+										  <!-- Modal body -->
+										  <div class="modal-body text-center">
+										
+										<table style="width:100%">
+										  <tr>
+											<td><label  class="form-label">Tài khoản: </label></td>
+											<td>
+												<input type="text" id="tk_doi" name="tk_doi" required class="form-control" value="" disabled>
+											</td>
+
+										  </tr>
+										  
+										  
+										  <tr>
+											<td><label  class="form-label">Họ tên: </label></td>
+											<td>
+												<input type="text" name="ht_doi" required class="form-control" value="" >
+											</td>
+
+										  </tr>		
+
+										  <tr>
+											<td><label  class="form-label">Mật khẩu: </label></td>
+											<td>
+												<input type="text" name="mk_doi" required class="form-control" value="" >
+											</td>
+
+										  </tr>											  
+
+
+
+
+										</table>										
+																				
+										  </div>
+
+										  <!-- Modal footer -->
+										  <div class="modal-footer">
+											
+								<div class="container">
+								<div class="row">
+									<div class="col">   
 									<div class=" text-center "> 
 
-									<a href="suataikhoan_quanly.html?${json[i].TK}" class="btn btn-sm bg-primary text-white">Sửa thông tin</a> 
+									<button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">Đóng</button> 
 									</div> 
+									</div>
+									
+									<div class="col">   
+									<div class=" text-center "> 
+
+									<a onclick="chinhtaikhoan()" class="btn btn-sm bg-primary text-white" data-bs-dismiss="modal">Hoàn tất</a>
+									</div> 
+									</div>
+									
+								</div>
+								<br>
+							</div>
+										  </div>
+
+										</div>
+									  </div>
+									</div>									
+									
 									</div>
 									
 								</div>
@@ -328,15 +401,21 @@
            if(reponse.ok){
 			   reponse.json().then((json)=>{
 				console.log(json)
-				 
+					   
 				    document.getElementById("ten_tk_1").value = json.TK;
 					document.getElementById("hoten_tk_1").value = json.HoTen;
 				       if (json.GioiTinh == false) {
-						document.getElementById("gt_tk_1").value = "Nam";
-						} else {
 						document.getElementById("gt_tk_1").value = "Nữ";
+						} else {
+						document.getElementById("gt_tk_1").value = "Nam";
 						}
-				    document.getElementById("ng_tk_1").value = json.NgaySinh;
+					if(json.NgaySinh==null){
+					document.getElementById("ng_tk_1").value = "";
+					}else{
+					var ngaysinh =  new Date(json.NgaySinh);
+					document.getElementById("ng_tk_1").value = ngaysinh.toLocaleDateString();
+					}
+				  
 					document.getElementById("dc_tk_1").value = json.DiaChi;
 					document.getElementById("sdt_tk_1").value = json.SDT;
 					document.getElementById("cccd_tk_1").value = json.MaCanCuoc;
@@ -350,12 +429,94 @@
 })
 }
 
+	function laytaikhoan(){
+	
+		const queryString3 = window.location.search;
+	    let id=queryString3.replace('?', '');
+
+	
+	   var url = `https://amesbe.herokuapp.com/api/account/${id}`
+    console.log(url)
+    fetch(url,{
+        method:"GET",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiYWRtaW4ifQ.RnuaT2IuMgMlKtowFP8zJDASCRY54XFe7K6fRPNEgKM'
+        }
+    }).then((reponse)=>{
+           if(reponse.ok){
+			   reponse.json().then((json)=>{
+				console.log(json)
+				 
+				    document.getElementById("tk_doi").value = json.TK;
+
+	
+			   })
+		   }
+		   
+		   
+    }).catch((error)=>{
+     console.log(object)
+})
+}
+
+
 
 	</script>
 	
 	<script>
 
-
+	function chinhtaikhoan(){
+	const queryString6 = window.location.search;
+	let id3=queryString6.replace('?', '');
+	
+		var tk_doi = document.querySelector('input[name="tk_doi"]').value
+		var ht_doi = document.querySelector('input[name="ht_doi"]').value
+		var mk_doi = document.querySelector('input[name="mk_doi"]').value
+		
+			console.log(tk_doi);
+			console.log(ht_doi);
+			console.log(mk_doi);
+			
+	var formData ={
+    "GioiTinh": true,
+    "SDT": "",
+    "NgaySinh": null,
+    "DiaChi": "",
+    "TK": tk_doi,
+    "isActive": true,
+    "HoTen": ht_doi,
+    "MK": mk_doi,
+    "MaCanCuoc": ""
+	};
+	
+	var url = `https://amesbe.herokuapp.com/api/account/${id3}`
+    console.log(url)
+    fetch(url,{
+        method:"PUT",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiYWRtaW4ifQ.RnuaT2IuMgMlKtowFP8zJDASCRY54XFe7K6fRPNEgKM'
+        },
+		body: JSON.stringify(formData)
+    }).then((reponse)=>{
+           if(reponse.ok){
+			   reponse.json().then((json)=>{
+				console.log(json)
+			
+				
+	
+			   })
+		   }
+		   
+		   
+    }).catch((error)=>{
+     console.log(object)
+})
+						alert("Chỉnh sửa tài khoản thành công")
+						
+					
+	}
 	
 	function deletetk(){
 

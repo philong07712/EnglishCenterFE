@@ -38,10 +38,7 @@
 			            <i class="search-mobile-trigger-icon fas fa-search"></i>
 			        </div><!--//col-->
 		            <div class="app-search-box col">
-		                <form class="app-search-form">   
-							<input type="text" placeholder="Search..." name="search" class="form-control search-input">
-							<button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fas fa-search"></i></button> 
-				        </form>
+
 		            </div><!--//app-search-box-->
 		            
 		            <div class="app-utilities col-auto">
@@ -141,14 +138,7 @@
 					     <div class="page-utilities">
 						    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
 							    <div class="col-auto">
-								    <form class="table-search-form row gx-1 align-items-center">
-					                    <div class="col-auto">
-					                        <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Tìm kiếm">
-					                    </div>
-					                    <div class="col-auto">
-					                        <button type="submit" class="btn app-btn-secondary">Tìm kiếm</button>
-					                    </div>
-					                </form>
+
 					                
 							    </div><!--//col-->
 
@@ -266,12 +256,12 @@
 										<thead>
 											<tr>
 												<th class="cell text-center">Id</th>
-												<th class="cel text-centerl">Họ tên</th>
+												<th class="cell text-center">Họ tên</th>
 												<th class="cell text-center">Số điện thoại</th>
 												<th class="cell text-center">Địa chỉ</th>
 												<th class="cell text-center">Ngày sinh</th>
 												<th class="cell text-center">Loại tài khoản</th>
-												<th class="cell "></th>
+												<th class="cell text-center"></th>
 											</tr>
 										</thead>
 										<tbody id="data_3">
@@ -348,7 +338,19 @@ function get_all_acc(){
 					cry += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
 					cry += `<td class="cell text-center"> ${json[i].SDT}</td>`;
 					cry += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
-					cry += `<td class="cell text-center"> ${json[i].NgaySinh} </td>`;
+					
+					
+					
+					if(json[i].NgaySinh==null){
+					cry += `<td class="cell text-center">  </td>`;
+					}else{
+					var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
+
+					cry += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
+					
+					
+					}
+					
 					if(json[i].Role=="Student")
 					cry += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
 					if(json[i].Role=="Teacher")
@@ -371,7 +373,18 @@ function get_all_acc(){
 					cry1 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
 					cry1 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
 					cry1 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
-					cry1 += `<td class="cell text-center"> ${json[i].NgaySinh} </td>`;
+
+					if(json[i].NgaySinh==null){
+					cry1 += `<td class="cell text-center">  </td>`;
+					}else{
+					var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
+
+					cry1 += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
+					
+					
+					}
+
+
 					if(json[i].Role=="Student")
 					cry1 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
 					if(json[i].Role=="Teacher")
@@ -396,7 +409,18 @@ function get_all_acc(){
 					cry2 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
 					cry2 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
 					cry2 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
-					cry2 += `<td class="cell text-center"> ${json[i].NgaySinh} </td>`;
+
+					if(json[i].NgaySinh==null){
+					cry2 += `<td class="cell text-center">  </td>`;
+					}else{
+					var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
+
+					cry2 += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
+					
+					
+					}
+
+
 					if(json[i].Role=="Student")
 					cry2 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
 					if(json[i].Role=="Teacher")
@@ -419,7 +443,17 @@ function get_all_acc(){
 					cry3 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
 					cry3 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
 					cry3 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
-					cry3 += `<td class="cell text-center"> ${json[i].NgaySinh} </td>`;
+
+					if(json[i].NgaySinh==null){
+					cry3 += `<td class="cell text-center">  </td>`;
+					}else{
+					var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
+
+					cry3 += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
+					
+					
+					}
+
 					if(json[i].Role=="Student")
 					cry3 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
 					if(json[i].Role=="Teacher")

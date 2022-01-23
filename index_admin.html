@@ -20,7 +20,7 @@
 
 </head> 
 
-<body class="app">   	
+<body class="app" onload="lay_thong_tin_gv1()">   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -36,10 +36,7 @@
 			            <i class="search-mobile-trigger-icon fas fa-search"></i>
 			        </div><!--//col-->
 		            <div class="app-search-box col">
-		                <form class="app-search-form">   
-							<input type="text" placeholder="Search..." name="search" class="form-control search-input">
-							<button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fas fa-search"></i></button> 
-				        </form>
+
 		            </div><!--//app-search-box-->
 		            
 		            <div class="app-utilities col-auto">
@@ -136,21 +133,21 @@
 						    
 						    <div class="app-card-body">
 							 
-							    <form action="change_pass_admin" method="post">
+							 
 								    <div class="mb-3">
 									    <label for="setting-input-1" class="form-label">Mật khẩu hiện tại</label>
-									    <input type="text" class="form-control" id="admin-pass-1"  required>
+									    <input type="password" class="form-control" id="old_pass_gv"  required>
 									</div>
 									<div class="mb-3">
 									    <label for="setting-input-2" class="form-label">Mật khẩu mới</label>
-									    <input type="text" class="form-control" id="admin-pass-2"  required>
+									    <input type="password" class="form-control" id="new_pass_gv"  required>
 									</div>
 								    <div class="mb-3">
 									    <label for="setting-input-3" class="form-label">Nhập lại mật khẩu mới</label>
-									    <input type="email" class="form-control" id="admin-pass-3" required>
+									    <input type="password" class="form-control" id="re_new_pass_gv" required>
 									</div>
-									<button type="submit" class="btn app-btn-primary" >Cập nhật</button>
-							    </form>
+									<button onclick="gv_doi_mat_khau1()" type="submit" class="btn app-btn-primary" >Cập nhật</button>
+							  
 								
 						    </div><!--//app-card-body-->
 						    
@@ -182,12 +179,71 @@
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
 
-    <!-- Charts JS -->
-    <script src="assets/plugins/chart.js/chart.min.js"></script> 
-    <script src="assets/js/index-charts.js"></script> 
+
     
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 
+	<script>
+function lay_thong_tin_gv1(){
+    var url = `https://amesbe.herokuapp.com/api/general/info`
+    fetch(url,{
+        method:"GET",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': sessionStorage.getItem("Token")
+        }
+    }).then(function(reponse){
+        if(reponse.status !=200){
+            alert('Xảy ra lỗi!')
+        }
+        else {
+            return reponse.json()
+
+        }
+		
+    }).then(function(json){    window.sessionStorage.setItem("MK",json.MK)})
+			
+}	
+
+function gv_doi_mat_khau1(){
+    var old_pass_gv = document.getElementById("old_pass_gv").value;
+    var new_pass_gv = document.getElementById("new_pass_gv").value;
+    var re_new_pass_gv = document.getElementById("re_new_pass_gv").value;
+	
+	console.log(sessionStorage.getItem("MK"))
+
+    if (old_pass_gv != sessionStorage.getItem("MK")){
+        alert('Nhập sai mật khẩu hiện tại!'); 
+    } 
+    else {
+        if (new_pass_gv != re_new_pass_gv){
+            alert('Nhập lại mật khẩu mới không giống nhau!');
+        } 
+        else {
+            var url = `https://amesbe.herokuapp.com/api/general/change/${new_pass_gv}`;
+            fetch(url,{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Authorization': sessionStorage.getItem("Token")
+                }
+            }).then(function(response) { 
+                if (response.status != 200){
+                    alert('Xảy ra lỗi!')
+                } else {
+                    return response.json
+                }
+            })
+            .then(function(json){
+                window.sessionStorage.setItem("MK",new_pass_gv);
+				alert("Cập nhật thành công")
+            })
+        }
+    }
+			
+}
+
+	</script>
 
 </body>
 </html> 

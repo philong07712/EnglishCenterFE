@@ -58,10 +58,7 @@
 			            <i class="search-mobile-trigger-icon fas fa-search"></i>
 			        </div><!--//col-->
 		            <div class="app-search-box col">
-		                <form class="app-search-form">   
-							<input type="text" placeholder="Search..." name="search" class="form-control search-input">
-							<button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fas fa-search"></i></button> 
-				        </form>
+
 		            </div><!--//app-search-box-->
 		            
 		            <div class="app-utilities col-auto">
@@ -155,14 +152,7 @@
 					     <div class="page-utilities">
 						    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
 							    <div class="col-auto">
-								    <form class="table-search-form row gx-1 align-items-center">
-					                    <div class="col-auto">
-					                        <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Tìm kiếm">
-					                    </div>
-					                    <div class="col-auto">
-					                        <button type="submit" class="btn app-btn-secondary">Tìm kiếm</button>
-					                    </div>
-					                </form>
+
 					                
 							    </div><!--//col-->
 
@@ -185,7 +175,7 @@
 												<th class="cell text-center">Giảng viên</th>
 												<th class="cell text-center">Thời gian</th>
 												<th class="cell text-center">Phòng</th>
-
+												<th class="cell text-center">Số lượng</th>
 												<th class="cell text-center">Chi tiết</th>
 											</tr>
 										</thead>
@@ -350,7 +340,14 @@ function get_all_class(){
 					cry += `<td class="cell text-center"> ${class1.TenGiangVien}</td>`;
 					cry += `<td class="cell text-center"> ${class1.GioHoc} </td>`;
 					cry += `<td class="cell text-center"> ${class1.PhongHoc} </td>`;
+					
+					if(class1.HocVien==null){
+					cry += `<td class="cell text-center"> 0 </td>`;
+					}else{
+					cry += `<td class="cell text-center"> ${Object.keys(class1.HocVien).length} </td>`;					
+					}
 
+					
 					cry += `<td class="cell text-center"><a href="viewlophoc_quanly.html?${class1.MaLop}" class="btn-sm app-btn-primary" href="#">View</a></td>`; "<tr>";
 				
 				})
@@ -419,15 +416,21 @@ function get_all_gv(){
 	var magv=giangvien.substr(0, 9);
 	var tengv=giangvien.substr(10, );
 
-	console.log(tengv);
+	console.log(typeof malop);
+	console.log(typeof tenlop);
+	console.log(typeof giohoc);
+	console.log(typeof magv);
+	console.log(typeof tengv);
+	console.log(typeof phong);
+	
 	
 	var formData ={
-    "GioHoc":"T4,1-4 T6,6-9",
-    "MaGiangVien":"GV1000002",
-    "MaLop":"A01",
-    "PhongHoc":"A111",
-    "TenGiangVien":"N.T Khôi",
-    "TenLop":"TOEIC01-550+"
+    "GioHoc":giohoc,
+    "MaGiangVien":magv,
+    "MaLop":malop,
+    "PhongHoc":phong,
+    "TenGiangVien":tengv,
+    "TenLop":tenlop
 	};
 	taomoilop(formData);	
 
@@ -450,7 +453,7 @@ function get_all_gv(){
     }).then((reponse)=>{
            if(reponse.ok){
 			   reponse.json().then((json)=>{
-				console.log(json)
+				            window.location.replace("./listlophoc_quanly.html")
 			
 				
 	

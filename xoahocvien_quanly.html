@@ -43,7 +43,7 @@
 
 </head> 
 
-<body class="app">   	
+<body class="app" onload="laythongtinlophoc_xoa()">   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -59,10 +59,7 @@
 			            <i class="search-mobile-trigger-icon fas fa-search"></i>
 			        </div><!--//col-->
 		            <div class="app-search-box col">
-		                <form class="app-search-form">   
-							<input type="text" placeholder="Search..." name="search" class="form-control search-input">
-							<button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fas fa-search"></i></button> 
-				        </form>
+
 		            </div><!--//app-search-box-->
 		            
 		            <div class="app-utilities col-auto">
@@ -144,13 +141,13 @@
 				
 				    <div class="col-auto">						
 								   <dt>Mã lớp:</dt> 
-									<label class="font-weight-bold">B1_01 </label>			
+									<input class="text-center" type="text" id="malop" name="malop" required class="form-control" value="" disabled>				
 
 				    </div>				
 				
 				    <div class="col-auto">						
 									<dt>Tên lớp:</dt> 
-									<label >Luyện thi B1-01 </label>					
+									<input class="text-center" type="text" id="tenlop" name="tenlop" required class="form-control" value="" disabled>					
 				    </div>
 				
 
@@ -169,30 +166,14 @@
 							        <table class="table app-table-hover mb-0 text-left" id="listlophoc">
 										<thead>
 											<tr>
+												<th class="cell text-center">STT</th>
 												<th class="cell text-center">Mã học viên</th>
-												<th class="cell text-center">Học viên</th>
-												<th class="cell text-center">Xóa</th>
-
+												<th class="cell text-center">Tên học viên</th>
+												<th class="cell text-center"></th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td class="cell text-center">HV2101</td>												
-												<td class="cell text-center">Đoàn Văn Hùng</td>
-												<td class="cell text-center"> <input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
-											</tr>
+										<tbody id="data2">
 
-											<tr>
-												<td class="cell text-center">HV2102</td>												
-												<td class="cell text-center">Nguyễn Văn Hưng</td>
-												<td class="cell text-center"> <input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
-											</tr>
-
-											<tr>
-												<td class="cell text-center">HV2103</td>												
-												<td class="cell text-center">Phan Văn Hung</td>
-												<td class="cell text-center"> <input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
-											</tr>
 		
 										</tbody>
 									</table>
@@ -216,7 +197,7 @@
 									<div class="col">   
 									<div class=" text-center "> 
 
-									<a href="#" class="btn btn-sm bg-primary text-white">Xác nhận</a> 
+									<a href="themhocvien_quanly.html" class="btn btn-sm bg-primary text-white">Thêm học viên</a> 
 									</div> 
 									</div>
 									
@@ -246,12 +227,114 @@
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
 
-    <!-- Charts JS -->
-    <script src="assets/plugins/chart.js/chart.min.js"></script> 
-    <script src="assets/js/index-charts.js"></script> 
+
     
     <!-- Page Specific JS -->
     <script src="assets/js/app.js"></script> 
+	
+	<script>
+		console.log(sessionStorage.getItem("URL"))
+
+
+	let id=sessionStorage.getItem("URL")
+
+	
+	
+	
+	function laythongtinlophoc_xoa(){
+			let id1=sessionStorage.getItem("URL")
+	
+	   var url = `https://amesbe.herokuapp.com/api/manager/${id1}`
+    console.log(url)
+    fetch(url,{
+        method:"GET",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
+        }
+    }).then((reponse)=>{
+           if(reponse.ok){
+			   reponse.json().then((json)=>{
+				console.log(json)
+				
+				let hocvienData=json.HocVien	
+					
+					    document.getElementById("malop").value = json.MaLop;
+						document.getElementById("tenlop").value = json.TenLop;
+
+				var cry = "";
+					
+				var dem=1
+				for(i in hocvienData){
+					
+					cry += "<tr>"
+					cry += `<td class="cell text-center"> ${dem} </td>`;
+					cry += `<td class="cell text-center"> ${i} </td>`;
+					cry += `<td class="cell text-center"> ${hocvienData[i]} </td>`;
+					cry += `<td class="cell text-center"><a onclick="xoahocvien('${i}')" class="btn btn-sm bg-primary text-white" >Xóa</a> 	</td>`;"<tr>";					
+					
+									
+						
+					dem++
+				}				
+				
+					document.getElementById("data2").innerHTML=cry				
+					
+			   })
+		   }
+		   
+		   
+    }).catch((error)=>{
+     console.log(object)
+})
+}
+
+
+
+	</script>
+
+
+<script>
+function xoahocvien(mahocvien1){
+
+	let id12=sessionStorage.getItem("URL")
+
+   console.log(mahocvien1)
+
+	var formData ={
+		"deleteListStudents":[mahocvien1]
+	};			
+				
+				
+
+	var url1 = `https://amesbe.herokuapp.com/api/manager/${id12}/deleteStudents` 
+    console.log(url1)
+    fetch(url1,{
+        method:"PUT",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
+        },
+		body: JSON.stringify(formData)
+    }).then((reponse)=>{
+           if(reponse.ok){
+			   reponse.json().then((json)=>{
+				console.log(json)
+			
+				
+	
+			   })
+			             
+		   }
+		   location.reload();
+		   
+    }).catch((error)=>{
+     console.log(object)
+})
+            
+}
+</script>	
+	
 
 </body>
 </html> 
