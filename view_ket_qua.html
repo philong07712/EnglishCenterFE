@@ -20,7 +20,7 @@
 
 </head> 
 
-<body class="app">   	
+<body class="app" onload="hv_xem_chi_tiet_kqht()">   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -41,12 +41,12 @@
 			
 		
 			            <div class="app-utility-item app-user-dropdown dropdown">
-				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào Trường!</a>
+				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào!</a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								<li><a class="dropdown-item" href="account.html">Account</a></li>
 								<li><a class="dropdown-item" href="settings.html">Settings</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="login.html">Log Out</a></li>
+								<li><a class="dropdown-item" href="dang_nhap.html">Log Out</a></li>
 							</ul>
 			            </div><!--//app-user-dropdown--> 
 		            </div><!--//app-utilities-->
@@ -117,29 +117,6 @@
     
    <div class="app-wrapper">
 
-    <div class="col-auto">
-        <div class="page-utilities">
-           <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
-               <div class="col-auto">
-                   <form class="table-search-form row gx-1 align-items-center">
-                       
-                       <div class="col-auto">
-                           <select name="tieu_chi" id="tieu_chi" class="btn app-btn-secondary">
-                               <option value="khoa_hoc" class="btn app-btn-secondary">Khoá học A102021</option>
-                               <option value="khoa_hoc" class="btn app-btn-secondary">Khoá học A102022</option>
-                               <option value="khoa_hoc" class="btn app-btn-secondary">Khoá học A102023</option>
-                           </select>
-                       </div>
-                       
-                   </form>
-                   
-               </div><!--//col-->
-
-
-           </div><!--//row-->
-       </div><!--//table-utilities-->
-   </div><!--//col-auto-->
-
    <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">			    
         <center> <h1 class="app-page-title">Kết quả học tập</h1> </center>
@@ -152,41 +129,18 @@
                     <div class="row">
                         <div class="col">  
                             <label for="setting-input-1" class="form-label">Mã Lớp: </label> 
-                            <label >AV01.18.11</label>
+                            <label id="malop"></label>
                         </div>
                         <div class="col"> 
                             <label for="setting-input-1" class="form-label">Tên Lớp: </label> 
-                            <label >AVGT-102021</label>
+                            <label id="tenlop"></label>
                         </div>  
 
                     </div>
 
                 </div>
 
-                <div class="col-auto">
-                    <div class="page-utilities">
-                       <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
-                           <div class="col-auto">
-                               <form class="table-search-form row gx-1 align-items-center">
-                                   
-                                   <div class="col-auto">
-                                       <select name="tieu_chi" id="tieu_chi" class="btn app-btn-secondary">
-                                           <option value="khoa_hoc" class="btn app-btn-secondary">Lần 1</option>
-                                           <option value="khoa_hoc" class="btn app-btn-secondary">Lần 2</option>
-                                           <option value="khoa_hoc" class="btn app-btn-secondary">Lần 3</option>
-                                           <option value="khoa_hoc" class="btn app-btn-secondary">Lần 4</option>
-                                       </select>
-                                   </div>
-                                   
-                               </form>
-                               
-                           </div><!--//col-->
             
-            
-                       </div><!--//row-->
-                   </div><!--//table-utilities-->
-               </div><!--//col-auto-->
-                
                 <div class="container">
                     <div class="col"> 
                         <label> </label> 
@@ -209,17 +163,8 @@
                                                 </tr>
                                             </thead>
                                             
-                                            <tbody>
+                                            <tbody id="Diem">
 
-                                                <tr>
-                                                    <td class="cell">75</td>
-                                                    <td class="cell">40</td>
-                                                    <td class="cell">55</td>
-                                                    <td class="cell">45</td>
-                                              
-                                                    
-                                                </tr>                                                
-            
                                             </tbody>
 
                                         </table>
@@ -249,7 +194,7 @@
     <script src="assets/js/index-charts.js"></script> 
     
     <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
+    <script src="assets/js/hocvien.js"></script> 
 
 </body>
 </html> 

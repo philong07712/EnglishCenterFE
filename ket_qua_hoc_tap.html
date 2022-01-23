@@ -20,7 +20,7 @@
 
 </head> 
 
-<body class="app">   	
+<body class="app" onload="hv_xem_kqht()">   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -41,12 +41,12 @@
 			
 		
 			            <div class="app-utility-item app-user-dropdown dropdown">
-				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào Trường!</a>
+				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào!</a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								<li><a class="dropdown-item" href="account.html">Account</a></li>
 								<li><a class="dropdown-item" href="settings.html">Settings</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="login.html">Log Out</a></li>
+								<li><a class="dropdown-item" href="dang_nhap.html">Log Out</a></li>
 							</ul>
 			            </div><!--//app-user-dropdown--> 
 		            </div><!--//app-utilities-->
@@ -118,28 +118,7 @@
    <div class="app-wrapper">
 
                     
-            <div class="col-auto">
-                 <div class="page-utilities">
-                    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
-                        <div class="col-auto">
-                            <form class="table-search-form row gx-1 align-items-center">
-                                
-                                <div class="col-auto">
-                                    <select name="tieu_chi" id="tieu_chi" class="btn app-btn-secondary">
-                                        <option value="khoa_hoc" class="btn app-btn-secondary">Khoá học A102021</option>
-                                        <option value="khoa_hoc" class="btn app-btn-secondary">Khoá học A102022</option>
-                                        <option value="khoa_hoc" class="btn app-btn-secondary">Khoá học A102023</option>
-                                    </select>
-                                </div>
-                                
-                            </form>
-                            
-                        </div><!--//col-->
-
-
-                    </div><!--//row-->
-                </div><!--//table-utilities-->
-            </div><!--//col-auto-->
+            
             <br>
 
 	    
@@ -166,49 +145,8 @@
                                                 </tr>
                                             </thead>
                                             
-                                            <tbody>
+                                            <tbody id="show">
 
-                                                <tr>
-                                                    <td class="cell">1</td>
-                                                    <td class="cell">AV01.18.11</td>
-                                                    <td class="cell">AVGT-102021</td>
-                                                    <td class="cell">85</td>
-                                                    <td class="cell"><a class="btn-sm app-btn-secondary" href="view_ket_qua.html">View</a></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="cell">2</td>
-                                                    <td class="cell">AV02.18.11</td>
-                                                    <td class="cell">AVBX-102021</td>
-                                                    <td class="cell">90</td>
-                                                    <td class="cell"><a class="btn-sm app-btn-secondary" href="view_ket_qua.html">View</a></td>
-                                                </tr>
-    
-                                                <tr>
-                                                    <td class="cell">3</td>
-                                                    <td class="cell">AV03.18.11</td>
-                                                    <td class="cell">AVB1-102021</td>
-                                                    <td class="cell">70</td>
-                                                    <td class="cell"><a class="btn-sm app-btn-secondary" href="view_ket_qua.html">View</a></td>
-                                                </tr>
-                                                
-    
-                                                <tr>
-                                                    <td class="cell">4</td>
-                                                    <td class="cell">AV04.18.11</td>
-                                                    <td class="cell">AVTT-102021</td>
-                                                    <td class="cell">60</td>
-                                                    <td class="cell"><a class="btn-sm app-btn-secondary" href="view_ket_qua.html">View</a></td>
-                                                </tr>
-    
-                                                <tr>
-                                                    <td class="cell">5</td>
-                                                    <td class="cell">AV05.18.11</td>
-                                                    <td class="cell">AVCNTT-102021</td>
-                                                    <td class="cell">65</td>
-                                                    <td class="cell"><a class="btn-sm app-btn-secondary" href="view_ket_qua.html">View</a></td>
-                                                </tr>		
-            
                                             </tbody>
 
                                         </table>
@@ -232,13 +170,9 @@
     <!-- Javascript -->          
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-
-    <!-- Charts JS -->
-    <script src="assets/plugins/chart.js/chart.min.js"></script> 
-    <script src="assets/js/index-charts.js"></script> 
     
     <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
+    <script src="assets/js/hocvien.js"></script> 
 
 </body>
 </html> 
