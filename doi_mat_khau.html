@@ -8,19 +8,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="Ames - Trung tâm Anh ngữ số 1 Đà Nẵng">
+    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
     <link rel="shortcut icon" href="favicon.ico"> 
     
     <!-- FontAwesome JS-->
-	<script defer src="assets/js/hocvien.js"></script>
-    
+    <!-- <script defer src="assets/plugins/fontawesome/js/all.min.js"></script> -->
+    <script defer src="assets/js/hocvien.js"></script>
+
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 
 </head> 
 
-<body class="app">   	
+<body class="app" >   	
     <header class="app-header fixed-top">	   	            
         <div class="app-header-inner">  
 	        <div class="container-fluid py-2">
@@ -32,19 +33,22 @@
 						    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
 					    </a>
 				    </div><!--//col-->
+		            <div class="search-mobile-trigger d-sm-none col">
+			            <i class="search-mobile-trigger-icon fas fa-search"></i>
+			        </div><!--//col-->
+		            
 		            
 		            <div class="app-utilities col-auto">
 			            <div class="app-utility-item app-notifications-dropdown dropdown">    
 
-							<div class="app-utility-item app-user-dropdown dropdown">
-								<a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào!</a>
-								<ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-									<li><a class="dropdown-item" href="account.html">Account</a></li>
-									<li><a class="dropdown-item" href="settings.html">Settings</a></li>
-									<li><hr class="dropdown-divider"></li>
-									<li><a class="dropdown-item" href="login.html">Log Out</a></li>
-								</ul>
-							</div><!--//app-user-dropdown--> 
+			
+		
+			            <div class="app-utility-item app-user-dropdown dropdown">
+				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xin chào</a>
+				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+								<li><a class="dropdown-item" href="login.html">Đăng Xuất</a></li>
+							</ul>
+			            </div><!--//app-user-dropdown--> 
 		            </div><!--//app-utilities-->
 		        </div><!--//row-->
 	            </div><!--//app-header-content-->
@@ -66,7 +70,7 @@
 					
 					    <li class="nav-item">
 					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-					        <a class="nav-link active" href="thong_tin_hoc_vien.html">
+					        <a class="nav-link " href="thong_tin_hoc_vien.html">
 						        <span class="nav-icon">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
 										<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -79,11 +83,11 @@
 						
 					    <li class="nav-item">
 					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-					        <a class="nav-link " href="xem_ds_lop.html">
+					        <a class="nav-link active" href="xem_ds_lop.html">
 						        <span class="nav-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
 						         </span>
 		                         <span class="nav-link-text">Danh sách lớp</span>
 					        </a><!--//nav-link-->
@@ -93,9 +97,9 @@
 					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 					        <a class="nav-link" href="ket_qua_hoc_tap.html">
 						        <span class="nav-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
-  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                                    </svg>
 						         </span>
 		                         <span class="nav-link-text">Kết quả học tập</span>
 					        </a><!--//nav-link-->
@@ -107,12 +111,12 @@
 				    </ul><!--//app-menu-->
 			    </nav><!--//app-nav-->
 			    
-		       
 	        </div><!--//sidepanel-inner-->
 	    </div><!--//app-sidepanel-->
     </header><!--//app-header-->
     
-   <div class="app-wrapper">
+    
+    <div class="app-wrapper">
 	    
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
 		    <div class="container-xl">			    
@@ -126,30 +130,34 @@
 						    
 						    <div class="app-card-body">
 							 
-								    <div class="mb-3">
-									    <label for="setting-input-1" class="form-label">Mật khẩu hiện tại</label>
-									    <input type="password" class="form-control" id="old_pass_hv"  >
-									</div>
-									<div class="mb-3">
-									    <label for="setting-input-2" class="form-label">Mật khẩu mới</label>
-									    <input type="password" class="form-control" id="new_pass_hv"  >
-									</div>
-								    <div class="mb-3">
-									    <label for="setting-input-3" class="form-label">Nhập lại mật khẩu mới</label>
-									    <input type="password" class="form-control" id="re_new_pass_hv" >
-									</div>
-									<button id="btn_dmk_hv" onclick="hv_doi_mat_khau()" class="btn app-btn-primary" >Cập nhật</button>
-							   
+								<div class="mb-3">
+									<label for="setting-input-1" class="form-label">Mật khẩu hiện tại</label>
+									<input type="password" id="old_pass_hv" class="form-control" >
+								</div>
+
+								<div class="mb-3">
+									<label for="setting-input-2" class="form-label">Mật khẩu mới</label>
+									<input type="password" id="new_pass_hv" class="form-control"   >
+								</div>
+
+								<div class="mb-3">
+									<label for="setting-input-3" class="form-label">Nhập lại mật khẩu mới</label>
+									<input type="password" id="re_new_pass_hv" class="form-control"  >
+								</div>
+								<button id="btn_dmk_hv" onclick="hv_doi_mat_khau()" class="btn app-btn-primary" >Cập nhật</button>
+							    
 						    </div><!--//app-card-body-->
 						    
 						</div><!--//app-card-->
 	                </div>
 					
                 </div><!--//row-->
-                <hr class="my-4">
-              
-	    
-    </div><!--//app-wrapper-->    	
+                <hr class="my-4">			
+    </div>
+ 
+    <!-- Javascript -->          
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
 
 </body>
 </html> 
