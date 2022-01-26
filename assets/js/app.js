@@ -30,9 +30,6 @@ function xulyLogin(json){
 
     window.sessionStorage.setItem("Token",json.Token)
     let result = tk1.substring(0, 2);
-    if(result == "HV"){
-        window.location.replace("./thong_tin_hoc_vien.html")
-    }
     if(result == "GV"){
         window.location.replace("./gv_thong_tin_ca_nhan.html")
     }
@@ -66,16 +63,6 @@ function lay_thong_tin_gv(){
 }
 
 function hienthi_ttgv(json){
-    var hoten = json.HoTen;
-    var dem=0;
-    for (var i=hoten.length-1; i>=0; i--){
-        if (hoten.substring(i,i+1) == " "){
-            dem=i;
-            break;
-        }
-    }
-    window.sessionStorage.setItem("HoTen",hoten.substring(dem+1,hoten.length))
-    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     
     document.getElementById("maso-gv").value = json.TK;
     document.getElementById("hoten-gv").value = json.HoTen;
@@ -100,9 +87,6 @@ function hienthi_ttgv(json){
 }
 
 // đổi mật khẩu
-function gv_load_dmk(){
-    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
-}
 function gv_doi_mat_khau(){
     var old_pass_gv = document.getElementById("old_pass_gv").value;
     var new_pass_gv = document.getElementById("new_pass_gv").value;
@@ -143,7 +127,6 @@ function gv_doi_mat_khau(){
 
 // Chỉnh sửa thông tin cá nhân giảng viên
 function gv_chinh_sua_ttcn(){
-    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/general/info`
     fetch(url,{
         method:"GET",
@@ -246,7 +229,6 @@ function gv_capnhat_ttcn(){
 
 // Xem danh sách lớp
 function gv_xem_ds_lop(){
-    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/class/list/teacherClass/${sessionStorage.getItem("TK")}`
     fetch(url,{
         method:"GET",
@@ -295,7 +277,6 @@ function gv_xemct_lop(malop){
 }
 
 function gv_xem_chi_tiet_lop(){
-    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/teacher/class/${sessionStorage.getItem("MaLop")}`
     fetch(url,{
         method:"GET",
@@ -349,7 +330,6 @@ function gv_gui_mhv(mahv){
 }
 
 function gv_xem_ct_hv(){
-    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/teacher/info/${sessionStorage.getItem("MaHV")}`
     fetch(url,{
         method:"GET",
@@ -372,12 +352,7 @@ function gv_hienthi_ct_hv(json){
     document.getElementById("maso-hv").value = json.TK;
     document.getElementById("hoten-hv").value = json.HoTen;
     document.getElementById("cccd-hv").value = json.MaCanCuoc;
-    if(json.NgaySinh==null){
-		document.getElementById("ngaysinh-hv").value = "";
-	}else{
-		var ngaysinh =  new Date(json.NgaySinh);
-		document.getElementById("ngaysinh-hv").value = ngaysinh.toLocaleDateString();
-	}
+    document.getElementById("ngaysinh-hv").value = json.NgaySinh;
     if (json.GioiTinh == false) {
         document.getElementById("gioitinh-hv").value = "Nữ";
     } else {
@@ -389,7 +364,6 @@ function gv_hienthi_ct_hv(json){
 
 // nhập điểm
 function gv_nhapdiem_json(){
-    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/teacher/class/${sessionStorage.getItem("MaLop")}`
     fetch(url,{
         method:"GET",
@@ -497,14 +471,13 @@ function gv_xuly_nhapdiem(json){
             return response.json
         }
     }).then(function(json){
-        alert('Nhập điểm thành công.')
-        window.location.replace("./gv_xem_chi_tiet_lop.html")
+      console.log(json)
+      window.location.replace("./gv_xem_chi_tiet_lop.html")
     })
 }
 
 // chỉnh sửa điểm
 function gv_chinhsuadiem_json(){
-    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/teacher/class/${sessionStorage.getItem("MaLop")}`
     fetch(url,{
         method:"GET",
@@ -641,16 +614,12 @@ function gv_xuly_chinhsuadiem(json){
             return response.json
         }
     }).then(function(json){
-      alert('Chỉnh sửa điểm thành công.')
+      console.log(json)
       window.location.replace("./gv_xem_chi_tiet_lop.html")
     })
 }
 
 //Tìm kiếm
-function gv_load_timkiem(){
-    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
-}
-
 function gv_search(){
     var tieu_chi = document.getElementById("tieu_chi").value
     var search = document.getElementById("search").value

@@ -152,6 +152,10 @@
 									<div class="col"> 
 									<a onclick="laylophoc()" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal1">Chỉnh sửa</a>
 									</div>
+									
+									<div class="col"> 
+									<a onclick="xemlich()" class="btn btn-sm bg-primary text-white" >Xem lịch</a>
+									</div>									
 								</div>
 								<br>
     
@@ -449,6 +453,10 @@
 					document.getElementById("tenlop").value = json.TenLop;
 					document.getElementById("giangvien").value = json.TenGiangVien;
 					document.getElementById("giohoc").value = json.GioHoc;	
+					
+				    window.sessionStorage.setItem("malop_xl",json.MaLop);
+					window.sessionStorage.setItem("magv_xl",json.MaGiangVien);
+					window.sessionStorage.setItem("ds_xl",json.HocVien);		
 
 				var cry = "";
 					
@@ -635,8 +643,56 @@
 		const queryString8 = window.location.search;
 	    let id8=queryString8.replace('?', '');
 	    window.sessionStorage.setItem("URL",id8);
+		
+
 	</script>
 
+<script>
+function xemlich(){
+
+	var formData ={
+
+    "MaLop": "TC-01",
+    "MaGiangVien": "GV1000001",
+    "students": [
+        "HV1000001",
+        "HV1000002",
+        "HV1000003",
+	    "HV1000004",
+	    "HV1000007",
+        "HV1000017"
+    ]
+
+
+	};	
+
+	   var url = `https://amesbe.herokuapp.com/api/manager/XemLich`
+    console.log(url)
+    fetch(url,{
+        method:"GET",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
+        },
+		body: JSON.stringify(formData)
+    }).then((reponse)=>{
+           if(reponse.ok){
+			   reponse.json().then((json)=>{
+				console.log(json)
+				
+				
+			
+					
+			   })
+		   }
+		   
+		   
+    }).catch((error)=>{
+
+})
+}
+
+</script>
 
 </body>
 </html> 
