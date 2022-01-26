@@ -220,24 +220,28 @@ function gv_doi_mat_khau1(){
             alert('Nhập lại mật khẩu mới không giống nhau!');
         } 
         else {
-            var url = `https://amesbe.herokuapp.com/api/general/change/${new_pass_gv}`;
-            fetch(url,{
-                method:"POST",
-                headers:{
-                    'Content-Type': 'application/json',
-                    'Authorization': sessionStorage.getItem("Token")
-                }
-            }).then(function(response) { 
-                if (response.status != 200){
-                    alert('Xảy ra lỗi!')
-                } else {
-                    return response.json
-                }
-            })
-            .then(function(json){
-                window.sessionStorage.setItem("MK",new_pass_gv);
-				alert("Cập nhật thành công")
-            })
+            if (old_pass_gv == new_pass_gv){
+                alert('Mật khẩu mới phải khác mật khẩu cũ!');
+            }
+            else{
+                var url = `https://amesbe.herokuapp.com/api/general/change/${new_pass_gv}`;
+                fetch(url,{
+                    method:"POST",
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'Authorization': sessionStorage.getItem("Token")
+                    }
+                }).then(function(response) { 
+                    if (response.status != 200){
+                        alert('Xảy ra lỗi!')
+                    } else {
+                        return response.json
+                    }
+                }).then(function(json){
+                    window.sessionStorage.setItem("MK",new_pass_gv);
+				    alert("Cập nhật thành công")
+                })
+            }
         }
     }
 			

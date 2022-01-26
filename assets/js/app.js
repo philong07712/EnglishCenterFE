@@ -118,24 +118,28 @@ function gv_doi_mat_khau(){
             alert('Nhập lại mật khẩu mới không giống nhau!');
         } 
         else {
-            var url = `https://amesbe.herokuapp.com/api/general/change/${new_pass_gv}`;
-            fetch(url,{
-                method:"POST",
-                headers:{
-                    'Content-Type': 'application/json',
-                    'Authorization': sessionStorage.getItem("Token")
-                }
-            }).then(function(response) { 
-                if (response.status != 200){
-                    alert('Xảy ra lỗi!')
-                } else {
-                    return response.json
-                }
-            })
-            .then(function(json){
-                window.sessionStorage.setItem("MK",new_pass_gv);
-				alert("Cập nhật thành công")
-            })
+            if (old_pass_gv == new_pass_gv){
+                alert('Mật khẩu mới phải khác mật khẩu cũ!');
+            }
+            else{
+                var url = `https://amesbe.herokuapp.com/api/general/change/${new_pass_gv}`;
+                fetch(url,{
+                    method:"POST",
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'Authorization': sessionStorage.getItem("Token")
+                    }
+                }).then(function(response) { 
+                    if (response.status != 200){
+                        alert('Xảy ra lỗi!')
+                    } else {
+                        return response.json
+                    }
+                }).then(function(json){
+                    window.sessionStorage.setItem("MK",new_pass_gv);
+				    alert("Cập nhật thành công")
+                })
+            }
         }
     }
 			
@@ -168,12 +172,24 @@ function gv_chinhsua(json){
     document.getElementById("hoten-gv").value = json.HoTen;
     document.getElementById("cccd-gv").value = json.MaCanCuoc;
 
-	
+    var ngaysinh =  new Date(json.NgaySinh);
+	date = new Date(ngaysinh);
+    year = date.getFullYear();
+    month = date.getMonth()+1;
+    dt = date.getDate();
+
+    if (dt < 10) {
+        dt = '0' + dt;
+    }
+    if (month < 10) {
+        month = '0' + month;
+    }
+
 	if(json.NgaySinh==null){
 		document.getElementById("ngaysinh-gv").value = "";
 	}else{
-		var ngaysinh =  new Date(json.NgaySinh);
-		document.getElementById("ngaysinh-gv").value = ngaysinh.toLocaleDateString();
+		
+		document.getElementById("ngaysinh-gv").value = year+'-' + month + '-'+dt;
 	}
 	
 	

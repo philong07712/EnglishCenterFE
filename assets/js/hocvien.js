@@ -116,24 +116,28 @@ function hv_doi_mat_khau(){
             alert('Nhập lại mật khẩu mới không giống nhau!');
         } 
         else {
-            var url = `https://amesbe.herokuapp.com/api/general/change/${new_pass_hv}`;
-            fetch(url,{
-                method:"POST",
-                headers:{
-                    'Content-Type': 'application/json',
-                    'Authorization': sessionStorage.getItem("Token")
-                }
-            }).then(function(response) { 
-                if (response.status != 200){
-                    alert('Xảy ra lỗi!')
-                } else {
-                    return response.json
-                }
-            })
-            .then(function(json){
-                window.sessionStorage.setItem("MK",new_pass_hv);
-				alert("Cập nhật thành công")
-            })
+            if (old_pass_hv == new_pass_hv){
+                alert('Mật khẩu mới phải khác mật khẩu cũ!');
+            }
+            else{
+                var url = `https://amesbe.herokuapp.com/api/general/change/${new_pass_hv}`;
+                fetch(url,{
+                    method:"POST",
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'Authorization': sessionStorage.getItem("Token")
+                    }
+                }).then(function(response) { 
+                    if (response.status != 200){
+                        alert('Xảy ra lỗi!')
+                    } else {
+                        return response.json
+                    }
+                }).then(function(json){
+                    window.sessionStorage.setItem("MK",new_pass_hv);
+				    alert("Cập nhật thành công")
+                })
+            }
         }
     }
 			
@@ -161,11 +165,24 @@ function hv_chinh_sua_ttcn(){
 } 
 
 function hv_chinhsua(json){
-    var ngaysinh =  new Date(json.NgaySinh);
     document.getElementById("maso-hv").value = json.TK;
     document.getElementById("hoten-hv").value = json.HoTen;
     document.getElementById("cccd-hv").value = json.MaCanCuoc;
-    document.getElementById("ngaysinh-hv").value = ngaysinh.toLocaleDateString();
+
+    var ngaysinh =  new Date(json.NgaySinh);
+	date = new Date(ngaysinh);
+    year = date.getFullYear();
+    month = date.getMonth()+1;
+    dt = date.getDate();
+
+    if (dt < 10) {
+        dt = '0' + dt;
+    }
+    if (month < 10) {
+        month = '0' + month;
+    }
+
+    document.getElementById("ngaysinh-hv").value = year+'-' + month + '-'+dt;
      if (json.GioiTinh == false) {
         document.getElementById("nu").checked = true;
      } else {
