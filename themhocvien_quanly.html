@@ -265,6 +265,7 @@
 	
 	
 	function laythongtinlophoc(){
+		document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
 			let id1=sessionStorage.getItem("URL")
 	
 	   var url = `https://amesbe.herokuapp.com/api/manager/${id1}`

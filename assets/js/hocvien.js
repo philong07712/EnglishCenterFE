@@ -67,6 +67,17 @@ function lay_thong_tin_hv(){
 }
 
 function hienthi_tthv(json){
+    var hoten = json.HoTen;
+    var dem=0;
+    for (var i=hoten.length-1; i>=0; i--){
+        if (hoten.substring(i,i+1) == " "){
+            dem=i;
+            break;
+        }
+    }
+    window.sessionStorage.setItem("HoTen",hoten.substring(dem+1,hoten.length))
+    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
+
     var ngaysinh =  new Date(json.NgaySinh);
     document.getElementById("maso-hv").value = json.TK;
     document.getElementById("hoten-hv").value = json.HoTen;
@@ -86,6 +97,10 @@ function hienthi_tthv(json){
 
 
 // đổi mật khẩu
+function hv_load_dmk(){
+    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
+}
+
 function hv_doi_mat_khau(){
     var old_pass_hv = document.getElementById("old_pass_hv").value;
     var new_pass_hv = document.getElementById("new_pass_hv").value;
@@ -126,6 +141,7 @@ function hv_doi_mat_khau(){
 
 // Chỉnh sửa thông tin cá nhân học viên
 function hv_chinh_sua_ttcn(){
+    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/general/info`
     fetch(url,{
         method:"GET",
@@ -220,6 +236,7 @@ function hv_capnhat_ttcn(){
 
 // Xem danh sách lớp
 function hv_xem_ds_lop(){
+    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/class/list/${sessionStorage.getItem("TK")}`
     fetch(url,{
         method:"GET",
@@ -269,6 +286,7 @@ function hv_xemct_lop(malop){
 }
 
 function hv_xem_chi_tiet_lop(){
+    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/class/${sessionStorage.getItem("MaLop")}`
     fetch(url,{
         method:"GET",
@@ -316,6 +334,7 @@ function hv_hienthi_ct_lop(json){
 
 // Xem kết quả học tập
 function hv_xem_kqht(){
+    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/score/list/${sessionStorage.getItem("TK")}`
     fetch(url,{
         method:"GET",
@@ -370,6 +389,7 @@ function hv_xemct_kqht(malop){
 }
 
 function hv_xem_chi_tiet_kqht(){
+    document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
     var url = `https://amesbe.herokuapp.com/api/score/${sessionStorage.getItem("TK")}/${sessionStorage.getItem("MaLop")}`
     fetch(url,{
         method:"GET",

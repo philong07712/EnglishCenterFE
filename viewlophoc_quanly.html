@@ -431,7 +431,7 @@
 	
 	
 	function laythongtin(id){
-
+		document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
 	
 	   var url = `https://amesbe.herokuapp.com/api/manager/${id}`
     console.log(url)
