@@ -309,6 +309,9 @@
     <!-- Page Specific JS -->
     <script>
 function get_all_acc(){
+	if (sessionStorage.getItem("listAllAccount")!=null){
+		showAllAccount(JSON.parse(sessionStorage.getItem("listAllAccount")))
+	}
     var url = `https://amesbe.herokuapp.com/api/account/thong-ke`
     console.log(url)
     fetch(url,{
@@ -318,171 +321,150 @@ function get_all_acc(){
             'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiYWRtaW4ifQ.RnuaT2IuMgMlKtowFP8zJDASCRY54XFe7K6fRPNEgKM'
         }
     }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
-				console.log(json)
-				 
-				//const myArray = JSON.parse(json);
-				 
-				//if(myArray.length >0){
-					var cry = "";
-					var cry1 = "";
-					var cry2 = "";
-					var cry3 = "";
-					
-				//}  
-				   
-				for(i in json){
-					cry += "<tr>"
-					cry += `<td class="cell text-center"> ${json[i].TK} </td>`;
-					cry += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
-					cry += `<td class="cell text-center"> ${json[i].SDT}</td>`;
-					cry += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
-					
-					
-					
-					if(json[i].NgaySinh==null){
-					cry += `<td class="cell text-center">  </td>`;
-					}else{
-					var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
-
-					cry += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
-					
-					
-					}
-					
-					if(json[i].Role=="Student")
-					cry += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Teacher")
-					cry += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Manager")
-					cry += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Admin")
-					cry += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
-					
-												
-					cry += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
-
-
-
-
-					if(json[i].Role=="Manager"){
-
-					cry1 += "<tr>"
-					cry1 += `<td class="cell text-center"> ${json[i].TK} </td>`;
-					cry1 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
-					cry1 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
-					cry1 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
-
-					if(json[i].NgaySinh==null){
-					cry1 += `<td class="cell text-center">  </td>`;
-					}else{
-					var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
-
-					cry1 += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
-					
-					
-					}
-
-
-					if(json[i].Role=="Student")
-					cry1 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Teacher")
-					cry1 += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Manager")
-					cry1 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Admin")
-					cry1 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
-					
-												
-					cry1 += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
-					
-					
-					}
-					
-					
-					
-					if(json[i].Role=="Teacher"){
-
-					cry2 += "<tr>"
-					cry2 += `<td class="cell text-center"> ${json[i].TK} </td>`;
-					cry2 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
-					cry2 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
-					cry2 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
-
-					if(json[i].NgaySinh==null){
-					cry2 += `<td class="cell text-center">  </td>`;
-					}else{
-					var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
-
-					cry2 += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
-					
-					
-					}
-
-
-					if(json[i].Role=="Student")
-					cry2 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Teacher")
-					cry2 += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Manager")
-					cry2 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Admin")
-					cry2 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
-					
-												
-					cry2 += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
-					
-					
-					}					
-
-					if(json[i].Role=="Student"){
-
-					cry3 += "<tr>"
-					cry3 += `<td class="cell text-center"> ${json[i].TK} </td>`;
-					cry3 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
-					cry3 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
-					cry3 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
-
-					if(json[i].NgaySinh==null){
-					cry3 += `<td class="cell text-center">  </td>`;
-					}else{
-					var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
-
-					cry3 += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
-					
-					
-					}
-
-					if(json[i].Role=="Student")
-					cry3 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Teacher")
-					cry3 += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Manager")
-					cry3 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
-					if(json[i].Role=="Admin")
-					cry3 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
-					
-												
-					cry3 += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
-					
-					
-					}					
- 			
-				}	
+			if(reponse.ok){
+				reponse.json().then((json)=>{
+					console.log(json)
+					sessionStorage.setItem("listAllAccount",JSON.stringify(json))
+					showAllAccount(json)
+				})
+			} else {
+				alert("lỗi không lấy được dữ liệu")
+			}
+		}).catch((error)=>{
+		console.log(object)
+	})
+	}	
+			
+	function showAllAccount(json)	{		
+		//const myArray = JSON.parse(json);
+		//if(myArray.length >0){
+			var cry = "";
+			var cry1 = "";
+			var cry2 = "";
+			var cry3 = "";
+			
+			
+			for(i in json){
+				cry += "<tr>"
+				cry += `<td class="cell text-center"> ${json[i].TK} </td>`;
+				cry += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
+				cry += `<td class="cell text-center"> ${json[i].SDT}</td>`;
+				cry += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
 				
-				 document.getElementById("data").innerHTML=cry
-				 document.getElementById("data_1").innerHTML=cry1
-				 document.getElementById("data_2").innerHTML=cry2
-				 document.getElementById("data_3").innerHTML=cry3
-			   })
-		   }
-		   
-		   
-    }).catch((error)=>{
-     console.log(object)
-})
-}	
+				if(json[i].NgaySinh==null){
+				cry += `<td class="cell text-center">  </td>`;
+				}else{
+				var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
+				
+				cry += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
+				}
+				
+				if(json[i].Role=="Student")
+				cry += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Teacher")
+				cry += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Manager")
+				cry += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Admin")
+				cry += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+				
+				cry += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
+
+				if(json[i].Role=="Manager"){
+
+				cry1 += "<tr>"
+				cry1 += `<td class="cell text-center"> ${json[i].TK} </td>`;
+				cry1 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
+				cry1 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
+				cry1 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
+
+				if(json[i].NgaySinh==null){
+				cry1 += `<td class="cell text-center">  </td>`;
+				}else{
+				var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
+
+				cry1 += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
+				
+				
+				}
+				if(json[i].Role=="Student")
+				cry1 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Teacher")
+				cry1 += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Manager")
+				cry1 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Admin")
+				cry1 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+				
+				cry1 += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
+				}
+
+				if(json[i].Role=="Teacher"){
+
+				cry2 += "<tr>"
+				cry2 += `<td class="cell text-center"> ${json[i].TK} </td>`;
+				cry2 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
+				cry2 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
+				cry2 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
+
+				if(json[i].NgaySinh==null){
+				cry2 += `<td class="cell text-center">  </td>`;
+				}else{
+				var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
+
+				cry2 += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
+				
+				
+				}
+
+				if(json[i].Role=="Student")
+				cry2 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Teacher")
+				cry2 += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Manager")
+				cry2 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Admin")
+				cry2 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+				
+											
+				cry2 += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
+				
+				
+				}					
+
+				if(json[i].Role=="Student"){
+
+				cry3 += "<tr>"
+				cry3 += `<td class="cell text-center"> ${json[i].TK} </td>`;
+				cry3 += `<td class="cell text-center"> ${json[i].HoTen} </td>`;
+				cry3 += `<td class="cell text-center"> ${json[i].SDT}</td>`;
+				cry3 += `<td class="cell text-center"> ${json[i].DiaChi} </td>`;
+
+				if(json[i].NgaySinh==null){
+				cry3 += `<td class="cell text-center">  </td>`;
+				}else{
+				var ngaysinh =  new Date(Number(json[i].NgaySinh.seconds+"000"));
+
+				cry3 += `<td class="cell text-center"> ${ngaysinh.toLocaleDateString()} </td>`;
+
+				}
+				if(json[i].Role=="Student")
+				cry3 += `<td class="cell text-center"><span class="badge bg-success">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Teacher")
+				cry3 += `<td class="cell text-center"><span class="badge bg-warning">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Manager")
+				cry3 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+				if(json[i].Role=="Admin")
+				cry3 += `<td class="cell text-center"><span class="badge bg-danger">${json[i].Role}</span></td>`;
+				
+				cry3 += `<td class="cell"><a href="viewtaikhoan_admin.html?${json[i].TK}" class="btn-sm app-btn-secondary">View</a> 	</td>`;"<tr>";	
+				}					
+			}	
+			document.getElementById("data").innerHTML=cry
+			document.getElementById("data_1").innerHTML=cry1
+			document.getElementById("data_2").innerHTML=cry2
+			document.getElementById("data_3").innerHTML=cry3
+		}
 	</script> 
     <script src="assets/js/app.js"></script> 
 </body>

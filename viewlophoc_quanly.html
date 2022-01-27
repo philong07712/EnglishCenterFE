@@ -520,7 +520,7 @@
 	const queryString = window.location.search;
 	let id=queryString.replace('?', '');
 	
-	   var url = `https://amesbe.herokuapp.com/api/manager/${id}`
+	var url = `https://amesbe.herokuapp.com/api/manager/${id}`
     console.log(url)
     fetch(url,{
         method:"DELETE",
@@ -529,18 +529,11 @@
             'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
         }
     }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
-				console.log(json)
-				 
-
-	
-			   })
-		   }
-				window.location.replace("./listlophoc_quanly.html")		   
-		   
+		if(reponse.ok) alert("xóa lớp học thành công")
+		else alert("xóa tài khoản thất bại")
+			window.location.replace("./listlophoc_quanly.html")		   
     }).catch((error)=>{
-     console.log(object)
+    console.log(object)
 })
 }	
 	

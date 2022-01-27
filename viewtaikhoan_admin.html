@@ -523,7 +523,7 @@
 	const queryString = window.location.search;
 	let id=queryString.replace('?', '');
 	
-	   var url = `https://amesbe.herokuapp.com/api/account/${id}`
+	var url = `https://amesbe.herokuapp.com/api/account/${id}`
     console.log(url)
     fetch(url,{
         method:"DELETE",
@@ -532,18 +532,13 @@
             'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiYWRtaW4ifQ.RnuaT2IuMgMlKtowFP8zJDASCRY54XFe7K6fRPNEgKM'
         }
     }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
-				console.log(json)
-				 
-
-	
-			   })
-		   }
-				window.location.replace("./quanly_admin.html")		   
-		   
+		if(reponse.ok){
+			alert("xóa tài khoản thành công")
+		}
+		else alert("xóa tài khoản thất bại")
+		window.location.replace("./quanly_admin.html")		   
     }).catch((error)=>{
-     console.log(object)
+    console.log(object)
 })
 }
 	</script>	
