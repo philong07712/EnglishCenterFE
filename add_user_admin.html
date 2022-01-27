@@ -227,33 +227,29 @@
 	console.log(chonloaitk);
 	console.log(typeof soluong);
 	
-
-
 	if(chonloaitk == "Manager"){
 	var formData ={
-    "Role":"Manager",
-    "Num":Number(soluong)
-	};
-	taomoitaikhoan(formData);
+		"Role":"Manager",
+		"Num":Number(soluong)
+		};
+		taomoitaikhoan(formData);
 	}
 	
 	if(chonloaitk=="Teacher"){
 	var formData ={
-    "Role":"Teacher",
-    "Num":Number(soluong)
-	};
-	taomoitaikhoan(formData);
+		"Role":"Teacher",
+		"Num":Number(soluong)
+		};
+		taomoitaikhoan(formData);
 	}
-	
 	if(chonloaitk == "Student"){
-	var formData ={
-    "Role":"Student",
-    "Num":Number(soluong)
-	};
-	taomoitaikhoan(formData);
+		var formData ={
+		"Role":"Student",
+		"Num":Number(soluong)
+		};
+		taomoitaikhoan(formData);
 	}
 	
-	alert("Tạo mới tài khoản thành công")
 	}
 	</script>
 	<script>
@@ -270,18 +266,15 @@
         },
 		body: JSON.stringify(data)
     }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
+		if(reponse.ok){
+			reponse.json().then((json)=>{
 				console.log(json)
-			
-				
-	
-			   })
-		   }
-		   
-		   
+				let tb = `Tạo thành công ${data.Num} tài khoản ${data.Role} có mã tài khoản liên tiếp bắt đầu từ ${json.start}`
+				alert(tb)
+			})
+		}else alert('Tạo tài khoản thất bại')
     }).catch((error)=>{
-     console.log(object)
+    console.log(object)
 })
 }	
 	</script>
