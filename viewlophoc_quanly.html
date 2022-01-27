@@ -428,12 +428,10 @@
 	console.log(del_str);
 	laythongtin(del_str);
 	
-	
-	
 	function laythongtin(id){
-		document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
+	document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
 	
-	   var url = `https://amesbe.herokuapp.com/api/manager/${id}`
+	var url = `https://amesbe.herokuapp.com/api/manager/${id}`
     console.log(url)
     fetch(url,{
         method:"GET",
@@ -442,8 +440,8 @@
             'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
         }
     }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
+        if(reponse.ok){
+			reponse.json().then((json)=>{
 				console.log(json)
 				
 				let hocvienData=json.HocVien	
@@ -617,10 +615,10 @@
 			
 				
 	
-			   })
-		   }
-		   
-		   
+			})
+		}
+		
+		
     }).catch((error)=>{
      console.log(object)
 })
@@ -641,49 +639,51 @@
 	</script>
 
 <script>
-function xemlich(){
-
-	var formData ={
-
-    "MaLop": "TC-01",
-    "MaGiangVien": "GV1000001",
-    "students": [
-        "HV1000001",
-        "HV1000002",
-        "HV1000003",
-	    "HV1000004",
-	    "HV1000007",
-        "HV1000017"
-    ]
-
-
-	};	
-
-	   var url = `https://amesbe.herokuapp.com/api/manager/XemLich`
-    console.log(url)
-    fetch(url,{
-        method:"GET",
-        headers:{
-            'Content-Type': 'application/json',
-            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
-        },
-		body: JSON.stringify(formData)
-    }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
-				console.log(json)
-				
-				
-			
-					
-			   })
-		   }
-		   
-		   
-    }).catch((error)=>{
-
-})
-}
+	function xemlich(){
+		var classes = JSON.parse(sessionStorage.getItem("listAllClass"))
+		var malop = sessionStorage.getItem("malop_xl")
+		var formData = {
+					"MaLop": malop
+				}
+		for (i of classes){
+			if (i.MaLop == malop){
+				formData.MaGiangVien = i.MaGiangVien
+				let hocvien = []
+				for (j in i.HocVien){
+					hocvien.push(j)
+				}
+				formData.students = hocvien
+				console.log(formData)
+				break;
+			}
+		}
+		
+		var url = `https://amesbe.herokuapp.com/api/manager/XemLich`
+		console.log("url:"+url)
+		
+		fetch(url,{
+			method:"POST",
+			headers:{
+				'Content-Type': 'application/json',
+				'Authorization': sessionStorage.getItem("Token")
+			},
+			body: JSON.stringify(formData)
+		}).then((reponse)=>{
+			if(reponse.ok){
+				reponse.json().then((json)=>{
+					console.log(typeof(json))
+					if(Object.keys(json.listDay).length === 0){
+						console.log("json rỗng")
+					} else {
+						console.log("json",json)
+					}
+				})
+			}
+			else alert("lỗi")
+		}).catch((error)=>{
+			console.log("lỗi api")
+		})
+	}
 
 </script>
 
