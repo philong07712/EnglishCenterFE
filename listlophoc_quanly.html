@@ -315,6 +315,10 @@
 	<script>
 function get_all_class(){
 	document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen");
+	if (sessionStorage.getItem("listAllClass")!=null){
+		showClasslist(JSON.parse(sessionStorage.getItem("listAllClass")))
+	}
+
     var url = `https://amesbe.herokuapp.com/api/manager/search/`
     console.log(url)
     fetch(url,{
@@ -324,13 +328,22 @@ function get_all_class(){
             'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
         }
     }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
-				console.log(json)
-				 
-				 let classData=json
-				 
-				if(classData.length>0){
+		if(reponse.ok){
+			reponse.json().then((json)=>{
+			console.log(json)
+			sessionStorage.setItem("listAllClass",JSON.stringify(json))
+			let classData=json
+			showClasslist(classData)
+			})
+		}
+
+    }).catch((error)=>{
+    console.log(object)
+	})
+	
+}
+	function showClasslist(classData){
+		if(classData.length>0){
 				var cry = ""
 				}
 				
@@ -353,34 +366,25 @@ function get_all_class(){
 				
 				})
 					document.getElementById("data1").innerHTML=cry
-			   })
-		   }
-		   
-		   
-    }).catch((error)=>{
-     console.log(object)
-})
-}	
-
-</script>
-   <script>	
-function get_all_gv(){
-    var url = `https://amesbe.herokuapp.com/api/manager/getAllTeacher`
-    console.log(url)
-    fetch(url,{
-        method:"GET",
-        headers:{
-            'Content-Type': 'application/json',
-            'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
-        }
-    }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
+	}
+	
+	function get_all_gv(){
+	var url = `https://amesbe.herokuapp.com/api/manager/getAllTeacher`
+	console.log(url)
+	fetch(url,{
+		method:"GET",
+		headers:{
+			'Content-Type': 'application/json',
+			'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vRW5nbGlzaENlbnRlci5jb20vIiwic3ViIjoiUUwxMDAwMDAxIn0.iIN7ejXmrqBxPmuB8TO4YPRjG_8O0WJ2zK6TJyjtLQE'
+		}
+	}).then((reponse)=>{
+			if(reponse.ok){
+				reponse.json().then((json)=>{
 				console.log(json)
 
 
-				 let classData1=json
-				 
+					let classData1=json
+					
 				if(classData1.length>0){
 				var cry1 = ""
 				}
@@ -393,26 +397,22 @@ function get_all_gv(){
 				})
 					document.getElementById("giangvien").innerHTML=cry1				 
 
-			   })
-		   }
-		   
-		   
-    }).catch((error)=>{
-     console.log(object)
-})
-}		
+				})
+			}
+			
+			
+	}).catch((error)=>{
+		console.log(object)
+	})
+	}		
 
-</script>
-<script>
 	function taomoi(){
-	
-	
+
 	var giangvien = document.querySelector('#giangvien option:checked').value
 	var malop = document.querySelector('input[name="malop"]').value
 	var tenlop = document.querySelector('input[name="tenlop"]').value
 	var giohoc = document.querySelector('input[name="giohoc"]').value
 	var phong = document.querySelector('input[name="phong"]').value	
-
 
 	var magv=giangvien.substr(0, 9);
 	var tengv=giangvien.substr(10, );
@@ -423,8 +423,7 @@ function get_all_gv(){
 	console.log(typeof magv);
 	console.log(typeof tengv);
 	console.log(typeof phong);
-	
-	
+		
 	var formData ={
     "GioHoc":giohoc,
     "MaGiangVien":magv,
@@ -434,16 +433,13 @@ function get_all_gv(){
     "TenLop":tenlop
 	};
 	taomoilop(formData);	
-
-
 	}
-	</script>
-	<script>
+	
 	function taomoilop(data){
 
-	
 	var url = `https://amesbe.herokuapp.com/api/manager/add`
     console.log(url)
+	console.log(data)
     fetch(url,{
         method:"POST",
         headers:{
@@ -452,19 +448,18 @@ function get_all_gv(){
         },
 		body: JSON.stringify(data)
     }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
-				            window.location.replace("./listlophoc_quanly.html")
-			
-				
-	
-			   })
-		   }
-		   
-		   
+		if(reponse.ok){
+			window.location.replace("./listlophoc_quanly.html")
+			location.reload()
+			alert("thêm lớp thành công") 
+		}
+		else {
+			alert("thêm lớp thất bại do trùng mã lớp hoặc xung đột lịch")   
+		}
     }).catch((error)=>{
-     console.log(object)
-})
+		alert("thêm lớp thất bại do trùng mã lớp hoặc xung đột lịch")
+    	console.log(object)
+	})
 }	
 
 

@@ -342,19 +342,19 @@ function themhocvien9(){
         },
 		body: JSON.stringify(formData)
     }).then((reponse)=>{
-           if(reponse.ok){
-			   reponse.json().then((json)=>{
-				console.log(json)
-			
-				
-	
-			   })
-			    alert("cập nhật thành công")       
-		   } 
-		   location.reload();
-		   
+		if(reponse.ok){
+			reponse.json().then((json)=>{
+			console.log(json)
+			})
+			alert("cập nhật thành công")   
+			location.reload();    
+		} 
+		else {
+			alert("thêm thất bại do nhập sai mã học viên hoặc xung đột lịch học")   
+		}
     }).catch((error)=>{
-     console.log(object)
+		console.log(object)
+		alert("thêm thất bại do nhập sai mã học viên hoặc xung đột lịch học")   
 })
             
 }
