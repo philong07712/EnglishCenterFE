@@ -67,6 +67,8 @@ function lay_thong_tin_gv(){
 
 function hienthi_ttgv(json){
     var hoten = json.HoTen;
+    console.log(hoten)
+    if(hoten!=null){
     var dem=0;
     for (var i=hoten.length-1; i>=0; i--){
         if (hoten.substring(i,i+1) == " "){
@@ -74,7 +76,8 @@ function hienthi_ttgv(json){
             break;
         }
     }
-    window.sessionStorage.setItem("HoTen",hoten.substring(dem+1,hoten.length))
+    sessionStorage.setItem("HoTen",hoten.substring(dem+1,hoten.length))
+    } else sessionStorage.setItem("HoTen",json.TK)
     document.getElementById("user-dropdown-toggle").innerHTML = sessionStorage.getItem("HoTen")
 
     document.getElementById("maso-gv").value = json.TK;
