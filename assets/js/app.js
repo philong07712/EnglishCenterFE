@@ -250,14 +250,10 @@ function gv_capnhat_ttcn(){
                 if (response.status != 200){
                     alert('Xảy ra lỗi!')
                 } else {
-                    return response.json
+                    alert("Cập nhật thành công")
                 }
-            }).then(function(json){
-
             })
-            
         }
-		alert("Cập nhật thành công")
 }
 
 // Xem danh sách lớp
