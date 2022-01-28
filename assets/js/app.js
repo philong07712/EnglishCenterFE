@@ -335,26 +335,47 @@ function gv_hienthi_ct_lop(json){
     document.getElementById("thoigian").innerHTML = json.LopHoc.GioHoc;
     document.getElementById("phong").innerHTML = json.LopHoc.PhongHoc;
 
-    let maHv = []
-    for (var i=0;i<json.HocVien.length;i++) {
-        maHv[i]=json.HocVien[i].MaHocVien;
-    }
-
     var table = document.getElementById("danhsach_lop")
-    for (var i=0; i<json.HocVien.length; i++){ 
-        var row =   `<tr>
-                        <td>${i+1}</td>
-                        <td>${json.HocVien[i].MaHocVien}</td>
-                        <td>${json.HocVien[i].TenHocVien}</td>
-                        <td class="cell"><button class="btn-sm app-btn-secondary" onclick="gv_gui_mhv('${maHv[i]}')">View</button></td>
-                        <td>${json.HocVien[i].DiemNghe}</td>
-                        <td>${json.HocVien[i].DiemNoi}</td>
-                        <td>${json.HocVien[i].DiemDoc}</td>
-                        <td>${json.HocVien[i].DiemViet}</td>
-                    </tr>`
-        
-        table.innerHTML +=row
-    }
+    var dem=1;
+    for (key in json.LopHoc.HocVien) {
+        if (json.LopHoc.HocVien.hasOwnProperty(key)) {
+            var i=-1;
+            for (var j=0; j<json.HocVien.length;j++){
+                if (json.HocVien[j].MaHocVien == key){
+                    i=j;
+                }
+            }
+
+            if (i==-1){
+                var row =   `<tr>
+                    <td>${dem}</td>
+                    <td>${key}</td>
+                    <td>${json.LopHoc.HocVien[key]}</td>
+                    <td class="cell"><button class="btn-sm app-btn-secondary" onclick="gv_gui_mhv('${key}')">View</button></td>
+                    <td>null</td>
+                    <td>null</td>
+                    <td>null</td>
+                    <td>null</td>    
+                </tr>`
+                table.innerHTML +=row
+            } else {
+                var row =   `<tr>
+                    <td>${dem}</td>
+                    <td>${key}</td>
+                    <td>${json.LopHoc.HocVien[key]}</td>
+                    <td class="cell"><button class="btn-sm app-btn-secondary" onclick="gv_gui_mhv('${key}')">View</button></td>
+                    <td>${json.HocVien[i].DiemNghe}</td>
+                    <td>${json.HocVien[i].DiemNoi}</td>
+                    <td>${json.HocVien[i].DiemDoc}</td>
+                    <td>${json.HocVien[i].DiemViet}</td>
+                </tr>`
+                        
+                table.innerHTML +=row
+            }
+            dem++;
+        }
+    }   
+
 }
 
 // xem thông tin học viên
@@ -429,24 +450,52 @@ function gv_hienthi_nhapdiem(json){
     document.getElementById("thoigian").innerHTML = json.LopHoc.GioHoc;
     document.getElementById("phong").innerHTML = json.LopHoc.PhongHoc;
 
+
     var table = document.getElementById("table_nhapdiem")
-    for (var i=0; i<json.HocVien.length; i++){
-        var diemnghe =  'diemnghe'+i;
-        var diemnoi =  'diemnoi'+i;
-        var diemdoc =  'diemdoc'+i;
-        var diemviet =  'diemviet'+i;
-        var row =   `<tr>
-                        <td>${i+1}</td>
-                        <td>${json.HocVien[i].MaHocVien}</td>
-                        <td>${json.HocVien[i].TenHocVien}</td>
-                        <td class="cell"><input id="${diemnghe}" class="cell_input" type="text" ></td>
-                        <td class="cell"><input id="${diemnoi}" class="cell_input" type="text" ></td>
-                        <td class="cell"><input id="${diemdoc}" class="cell_input" type="text" ></td>
-                        <td class="cell"><input id="${diemviet}" class="cell_input" type="text" ></td>
-                    </tr>`
-        
-        table.innerHTML +=row
-    }
+    var dem=1;
+    for (key in json.LopHoc.HocVien) {
+        if (json.LopHoc.HocVien.hasOwnProperty(key)) {
+            var diemnghe =  'diemnghe'+key;
+            var diemnoi =  'diemnoi'+key;
+            var diemdoc =  'diemdoc'+key;
+            var diemviet =  'diemviet'+key;
+
+            var i=-1;
+            for (var j=0; j<json.HocVien.length;j++){
+                if (json.HocVien[j].MaHocVien == key){
+                    i=j;
+                }
+            }
+
+            if (i==-1){
+                var row =   `<tr>
+                    <td>${dem}</td>
+                    <td>${key}</td>
+                    <td>${json.LopHoc.HocVien[key]}</td>
+                    <td class="cell"><input id="${diemnghe}" class="cell_input" type="text" ></td>
+                    <td class="cell"><input id="${diemnoi}" class="cell_input" type="text" ></td>
+                    <td class="cell"><input id="${diemdoc}" class="cell_input" type="text" ></td>
+                    <td class="cell"><input id="${diemviet}" class="cell_input" type="text" ></td>  
+                </tr>`
+                table.innerHTML +=row
+            } else {
+                var row =   `<tr>
+                    <td>${dem}</td>
+                    <td>${key}</td>
+                    <td>${json.LopHoc.HocVien[key]}</td>
+                    <td class="cell"><input id="${diemnghe}" value=${json.HocVien[i].DiemNghe} class="cell_input" type="text" disabled></td>
+                    <td class="cell"><input id="${diemnoi}" value=${json.HocVien[i].DiemNoi} class="cell_input" type="text" disabled></td>
+                    <td class="cell"><input id="${diemdoc}" value=${json.HocVien[i].DiemDoc} class="cell_input" type="text" disabled></td>
+                    <td class="cell"><input id="${diemviet}" value=${json.HocVien[i].DiemViet} class="cell_input" type="text" disabled></td>
+
+                    
+                </tr>`
+                        
+                table.innerHTML +=row
+            }
+            dem++;
+        }
+    }   
 }
 
 function xuly_nhapdiem(){
@@ -475,20 +524,59 @@ function gv_xuly_nhapdiem(json){
     }
     
     const hv =[];
-    for (var i=0; i<json.HocVien.length; i++){
-        var diemnghe =  'diemnghe'+i;
-        var diemnoi =  'diemnoi'+i;
-        var diemdoc =  'diemdoc'+i;
-        var diemviet =  'diemviet'+i;
-        const hv1 = {
-            "MaHocVien": json.HocVien[i].MaHocVien,
-            "DiemNghe": document.getElementById(diemnghe).value,
-            "DiemNoi": document.getElementById(diemnoi).value,
-            "DiemDoc": document.getElementById(diemdoc).value,
-            "DiemViet": document.getElementById(diemviet).value,
-          };
-        hv.push(hv1);   
+
+    for (key in json.LopHoc.HocVien) {
+        if (json.LopHoc.HocVien.hasOwnProperty(key)) {
+            var diemnghe =  'diemnghe'+key;
+            var diemnoi =  'diemnoi'+key;
+            var diemdoc =  'diemdoc'+key;
+            var diemviet =  'diemviet'+key;
+            
+            var nghe;
+            var noi;
+            var doc;
+            var viet;
+
+            if (document.getElementById(diemnghe).value)
+                nghe = document.getElementById(diemnghe).value;
+            else nghe = -1;
+
+            if (document.getElementById(diemnoi).value)
+                noi = document.getElementById(diemnoi).value;
+            else noi = -1;
+
+            if (document.getElementById(diemdoc).value)
+                doc = document.getElementById(diemdoc).value;
+            else doc = -1;
+
+            if (document.getElementById(diemviet).value)
+                viet = document.getElementById(diemviet).value;
+            else viet = -1;
+
+            if ((nghe>=0 && nghe<=10) && (noi>=0 && noi<=10) && (doc>=0 && doc<=10) && (viet>=0 && viet<=10)) {
+                const hv1 = {
+                    "MaHocVien": key,
+                    "DiemNghe": nghe,
+                    "DiemNoi": noi,
+                    "DiemDoc": doc,
+                    "DiemViet": viet,
+                };
+                hv.push(hv1);
+            } else {
+                if (nghe == -1 && noi == -1 && doc == -1 && viet == -1){
+                    continue;
+                }
+                else {
+                    alert('Phải nhập đúng và đủ dữ liệu !!!')
+                    window.location.replace("./gv_nhap_diem.html")
+                }
+            }
+            
+             
+        }
     }
+    console.log(hv)   
+
     
     const hocvien = {
         "HocVien": hv,
@@ -509,11 +597,11 @@ function gv_xuly_nhapdiem(json){
         if (response.status != 200){
             alert('Xảy ra lỗi!')
         } else {
+            alert('Nhập điểm thành công.')
             return response.json
         }
     }).then(function(json){
-        alert('Nhập điểm thành công.')
-        window.location.replace("./gv_xem_chi_tiet_lop.html")
+        window.location.replace("./gv_nhap_diem.html")
     })
 }
 
