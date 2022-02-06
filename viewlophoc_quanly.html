@@ -154,7 +154,7 @@
 									</div>
 									
 									<div class="col"> 
-									<a onclick="xemlich()" class="btn btn-sm bg-primary text-white" >Xem lịch</a>
+									<a onclick="xemlich()" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal12">Xem lịch</a>
 									</div>									
 								</div>
 								<br>
@@ -401,6 +401,61 @@
 
 
 
+<!-- The Modal2 -->
+<div class="modal" id="myModal12">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Xem lịch</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+                     <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="cell text-center"></th>
+                                <th scope="col" class="cell text-center">Tiết 1</th>
+                                <th scope="col" class="cell text-center">Tiết 2</th>
+                                <th scope="col" class="cell text-center">Tiết 3</th>
+                                <th scope="col" class="cell text-center">Tiết 4</th>
+                                <th scope="col" class="cell text-center">Tiết 5</th>
+                                <th scope="col" class="cell text-center">Tiết 6</th>
+                                <th scope="col" class="cell text-center">Tiết 7</th>
+                                <th scope="col" class="cell text-center">Tiết 8</th>
+                                <th scope="col" class="cell text-center">Tiết 9</th>
+                                <th scope="col" class="cell text-center">Tiết 10</th>
+                                <th scope="col" class="cell text-center">Tiết 11</th>
+                                <th scope="col" class="cell text-center">Tiết 12</th>
+                                <th scope="col" class="cell text-center">Tiết 13</th>
+                                <th scope="col" class="cell text-center">Tiết 14</th>
+                                <th scope="col" class="cell text-center">Tiết 15</th>
+								
+                            </tr>
+                        </thead>
+                        <tbody id="data5">
+
+
+                        </tbody>
+                    </table>
+
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 	    
 	    <footer class="app-footer">
 		    <div class="container text-center py-3">
@@ -639,6 +694,13 @@
 	</script>
 
 <script>
+
+function check_arr(element,arr){
+  let check = arr.indexOf(element);
+  return check == -1 ? false: true
+}
+
+
 	function xemlich(){
 		var classes = JSON.parse(sessionStorage.getItem("listAllClass"))
 		var malop = sessionStorage.getItem("malop_xl")
@@ -674,8 +736,370 @@
 					console.log(typeof(json))
 					if(Object.keys(json.listDay).length === 0){
 						console.log("json rỗng")
+						
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 2</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 3</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 4</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 5</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 6</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 7</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Chủ nhật</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+
+document.getElementById("data5").innerHTML=cry1					  
+						
+						
 					} else {
-						console.log("json",json)
+						console.log(json)
+						let lichData=json.listDay
+						
+				var cry1 = "";
+				
+				
+				
+				if(lichData.hasOwnProperty('2')==false){
+				
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 2</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+					  				
+				
+								
+				
+				}else{
+				
+						let arr=lichData[2];
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 2</th>`;
+						
+						
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					if(arr.indexOf(j)==-1){
+					cry1 += `<td> </td>`;
+					}else{
+					cry1 += `<td  style= "background-color: #ffff00"> </td>`;
+					}
+					
+						
+                      }
+					  
+					  				
+				
+				}
+				
+				
+				
+				
+				if(lichData.hasOwnProperty('3')==false){
+				
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 3</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+					  				
+				
+								
+				
+				}else{
+				
+						let arr=lichData[3];
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 3</th>`;
+						
+						
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					if(arr.indexOf(j)==-1){
+					cry1 += `<td> </td>`;
+					}else{
+					cry1 += `<td  style= "background-color: #ffff00"> </td>`;
+					}
+					
+						
+                      }
+					  
+					  				
+				
+				}				
+				
+				
+
+
+				if(lichData.hasOwnProperty('4')==false){
+				
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 4</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+					  				
+				
+								
+				
+				}else{
+				
+						let arr=lichData[4];
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 4</th>`;
+						
+						
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					if(arr.indexOf(j)==-1){
+					cry1 += `<td> </td>`;
+					}else{
+					cry1 += `<td  style= "background-color: #ffff00"> </td>`;
+					}
+					
+						
+                      }
+					  
+					  				
+				
+				}
+
+
+
+				if(lichData.hasOwnProperty('5')==false){
+				
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 5</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+					  				
+				
+								
+				
+				}else{
+				
+						let arr=lichData[5];
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 5</th>`;
+						
+						
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					if(arr.indexOf(j)==-1){
+					cry1 += `<td> </td>`;
+					}else{
+					cry1 += `<td  style= "background-color: #ffff00"> </td>`;
+					}
+					
+						
+                      }
+					  
+					  				
+				
+				}
+					
+
+				if(lichData.hasOwnProperty('6')==false){
+				
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 6</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+					  				
+				
+								
+				
+				}else{
+				
+						let arr=lichData[6];
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 6</th>`;
+						
+						
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					if(arr.indexOf(j)==-1){
+					cry1 += `<td> </td>`;
+					}else{
+					cry1 += `<td  style= "background-color: #ffff00"> </td>`;
+					}
+					
+						
+                      }
+					  
+					  				
+				
+				}
+
+
+
+
+
+				if(lichData.hasOwnProperty('7')==false){
+				
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 7</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+					  				
+				
+								
+				
+				}else{
+				
+						let arr=lichData[7];
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Thứ 7</th>`;
+						
+						
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					if(arr.indexOf(j)==-1){
+					cry1 += `<td> </td>`;
+					}else{
+					cry1 += `<td  style= "background-color: #ffff00"> </td>`;
+					}
+					
+						
+                      }
+					  
+					  				
+				
+				}
+				
+				
+				if(lichData.hasOwnProperty('8')==false){
+				
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Chủ nhật</th>`;
+												
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					cry1 += `<td> </td>`;	
+						
+                      }
+					  				
+				
+								
+				
+				}else{
+				
+						let arr=lichData[8];
+						cry1 += "<tr>"                               
+						cry1 += `<th scope="row" class="cell text-center">Chủ nhật</th>`;
+						
+						
+						
+					for( let j = 1 ; j < 15; j++ ){	
+					
+					if(arr.indexOf(j)==-1){
+					cry1 += `<td> </td>`;
+					}else{
+					cry1 += `<td  style= "background-color: #ffff00"> </td>`;
+					}
+					
+						
+                      }
+					  
+					  				
+				
+				}				
+
+document.getElementById("data5").innerHTML=cry1
+					
 					}
 				})
 			}
